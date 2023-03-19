@@ -5,7 +5,8 @@ module.exports = {
   purge: {
     content: [
       './pages/**/*.{js,ts,jsx,tsx}',
-      './components/**/*.{js,ts,jsx,tsx}'
+      './components/**/*.{js,ts,jsx,tsx}',
+      './features/**/*.{js,ts,jsx,tsx}'
     ],
     options: {
       // https://purgecss.com/safelisting.html#patterns
@@ -16,7 +17,11 @@ module.exports = {
   },
   content: [],
   theme: {
-    extend: {},
+    // extend: {
+    //   colors: {
+    //     sky: "#00BFFF"
+    //   }
+    // },
   },
   plugins: [],
 }
