@@ -6,7 +6,8 @@
     "extends": [
         "plugin:react/recommended",
         "standard-with-typescript",
-        "prettier"
+        "prettier",
+        "plugin:tailwindcss/recommended"
     ],
     "overrides": [
     ],
@@ -17,6 +18,10 @@
     "plugins": [
         "react"
     ],
+    "ignorePatterns": [
+    "*.config.js"
+  ],
     "rules": {
+        "prettier/prettier": "error",
     }
 }
