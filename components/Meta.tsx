@@ -1,7 +1,7 @@
-import { siteMeta } from '@/constants/meta'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import siteImg from '@/images/ogp.jpg'
+import { SITE_META } from '@/constants/meta'
 
 interface Props {
   pageTitle?: string
@@ -18,16 +18,16 @@ const Meta: React.FC<Props> = ({
   pageImgH,
 }) => {
   const router = useRouter()
-  const url = `${siteMeta.siteUrl}${router.asPath}`
+  const url = `${SITE_META.siteUrl}${router.asPath}`
 
   const title = pageTitle
-    ? `${pageTitle} | ${siteMeta.siteTitle}`
-    : siteMeta.siteTitle
-  const desc = pageDesc ?? siteMeta.siteDesc
+    ? `${pageTitle} | ${SITE_META.siteTitle}`
+    : SITE_META.siteTitle
+  const desc = pageDesc ?? SITE_META.siteDesc
   const img = pageImg || siteImg.src
   const imgW = (pageImgW || siteImg.width).toString()
   const imgH = (pageImgH || siteImg.height).toString()
-  const imgUrl = img.startsWith('https') ? img : `${siteMeta.siteUrl}${img}`
+  const imgUrl = img.startsWith('https') ? img : `${SITE_META.siteUrl}${img}`
 
   return (
     <Head>
@@ -40,12 +40,12 @@ const Meta: React.FC<Props> = ({
       <link rel="canonical" href={url} />
       <meta property="og:url" content={url} />
 
-      <meta property="og:site_name" content={siteMeta.siteTitle} />
-      <meta property="og:type" content={siteMeta.siteType} />
-      <meta property="og:locale" content={siteMeta.siteLocale} />
+      <meta property="og:site_name" content={SITE_META.siteTitle} />
+      <meta property="og:type" content={SITE_META.siteType} />
+      <meta property="og:locale" content={SITE_META.siteLocale} />
 
-      <link rel="icon" href={siteMeta.siteIcon} />
-      <link rel="apple-touch-icon" href={siteMeta.siteIcon} />
+      <link rel="icon" href={SITE_META.siteIcon} />
+      <link rel="apple-touch-icon" href={SITE_META.siteIcon} />
 
       <meta property="og:image" content={imgUrl} />
       <meta property="og:image:width" content={imgW} />
