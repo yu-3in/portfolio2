@@ -1,4 +1,4 @@
-export const siteMeta = {
+export const SITE_META = {
   siteTitle: "KOKI YUMOTO's PORTFOLIO",
   siteDesc: 'ポートフォリオサイトです',
   siteUrl: 'https://example.com',
