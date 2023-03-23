@@ -1,3 +1,2 @@
-export * from "./WorkItem";
-export * from "./WorkList";
-export * from "./WorkCard";
+export * from './WorkList'
+export * from './WorkCard'
