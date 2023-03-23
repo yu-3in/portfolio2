@@ -5,7 +5,7 @@ export type HeaderProps = {}
 
 export const Header: React.FC<HeaderProps> = () => {
   return (
-    <div className="fixed top-8 left-1/2 z-30 mx-auto w-10/12 -translate-x-1/2">
+    <header className="fixed top-8 left-1/2 z-30 mx-auto w-10/12 -translate-x-1/2">
       <div className="rounded-[1.4rem] bg-white px-6 py-5 shadow-md">
         <div className="flex items-center justify-between">
           <Link href="/">
@@ -16,6 +16,6 @@ export const Header: React.FC<HeaderProps> = () => {
           <HeaderNav />
         </div>
       </div>
-    </div>
+    </header>
   )
 }
