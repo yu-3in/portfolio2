@@ -1,7 +1,9 @@
+import { ParsedHTML } from '@/components/elements/content/parseHTML'
 import { CHIP_STYLE, CHIP_STYLE_OUTLINED } from '@/constants/chip'
 import { Favorite, FavoriteBorder } from '@mui/icons-material'
 import { Chip, IconButton } from '@mui/material'
 import axios from 'axios'
+import HTMLReactParser from 'html-react-parser'
 import Image from 'next/image'
 import { useCallback, useState } from 'react'
 import { Work } from '../types/Work'
@@ -82,8 +84,10 @@ export const WorkCard: React.FC<WorkCardProps> = ({ work }) => {
             })}
           </ul>
         </div>
-        <p>{work.description}</p>
-        <ul className="flex list-none gap-2 overflow-x-scroll">
+        <p>
+          <ParsedHTML html={work.description} />
+        </p>
+        <ul className="flex list-none flex-wrap gap-2">
           {work.tags.map((tag) => {
             const className = CHIP_STYLE[tag.type[0]]
             return (
