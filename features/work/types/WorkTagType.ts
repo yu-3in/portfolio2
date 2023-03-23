@@ -1,1 +1,1 @@
-export type WorkTagType = 'デフォルト' | '受賞' | '企業・イベント'
+export type WorkTagType = 'default' | 'award' | 'event'
