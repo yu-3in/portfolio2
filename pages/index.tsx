@@ -1,4 +1,3 @@
-import { Inter } from 'next/font/google'
 import { Hero } from '@/features/hero/components'
 import { Container } from '@/components/layouts/container/Container'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
@@ -51,7 +50,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     works != null
       ? await Promise.all(
           works.map(async (work) => {
-            console.log(work.thumbnail)
             if (work?.thumbnail?.url) {
               const { base64 } = await getPlaiceholder(work.thumbnail?.url)
               work.thumbnail.blurDataURL = base64
