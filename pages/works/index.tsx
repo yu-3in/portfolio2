@@ -3,9 +3,9 @@ import { Container } from '@/components/layouts/container/Container'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
 import { getAllWorks } from '@/features/work/api/getAllWorks'
 import { WorkList } from '@/features/work/components'
+import { addBlurDataURLToWork } from '@/features/work/libs/addBlurDataURLToWork'
 import { Work } from '@/features/work/types/Work'
 import { GetStaticProps, NextPage } from 'next'
-import { getPlaiceholder } from 'plaiceholder'
 
 export type WorksPageProps = {
   works: Work[] | null
@@ -33,18 +33,7 @@ export const getStaticProps: GetStaticProps<WorksPageProps> = async () => {
   let works = await getAllWorks()
 
   // Add blurDataURL
-  works =
-    works != null
-      ? await Promise.all(
-          works.map(async (work) => {
-            if (work?.thumbnail?.url) {
-              const { base64 } = await getPlaiceholder(work.thumbnail?.url)
-              work.thumbnail.blurDataURL = base64
-            }
-            return work
-          }),
-        )
-      : null
+  works = works != null ? await addBlurDataURLToWork(works) : null
 
   return {
     props: { works },

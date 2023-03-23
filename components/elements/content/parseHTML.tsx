@@ -1,10 +1,10 @@
 import parse, { Element } from 'html-react-parser'
 import Image from 'next/image'
 
-export type ParsedHTMLProps = { html: string }
+export type ParsedHTMLProps = { html?: string }
 
 export const ParsedHTML: React.FC<ParsedHTMLProps> = ({ html }) => {
-  const content = parse(html, {
+  const content = parse(html ?? '', {
     replace: (domNode) => {
       if (domNode instanceof Element && domNode.attribs) {
         if (domNode.name === 'img') {
