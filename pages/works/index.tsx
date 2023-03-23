@@ -1,7 +1,7 @@
 import { SectionHeading } from '@/components/elements/heading'
 import { Container } from '@/components/layouts/container/Container'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
-import { getWorks } from '@/features/work/api/getWorks'
+import { getAllWorks } from '@/features/work/api/getAllWorks'
 import { WorkList } from '@/features/work/components'
 import { Work } from '@/features/work/types/Work'
 import { GetStaticProps } from 'next'
@@ -30,7 +30,7 @@ const WorksPage: React.FC<WorksPageProps> = ({ works }) => {
 export default WorksPage
 
 export const getStaticProps: GetStaticProps<WorksPageProps> = async () => {
-  let works = await getWorks()
+  let works = await getAllWorks()
 
   // Add blurDataURL
   works =

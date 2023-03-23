@@ -1,9 +1,9 @@
 import { client } from '@/libs/api/client'
 import { Work } from '../types/Work'
 
-export const getHighlightWorks = async (): Promise<Work[] | null> => {
+export const getAllWorks = async (): Promise<Work[] | null> => {
   return client
-    .get({ endpoint: 'works', queries: { filters: 'highlight[equals]true' } })
+    .get({ endpoint: 'works', queries: { limit: 100 } })
     .then((res) => res.contents)
     .catch((err) => err)
 }

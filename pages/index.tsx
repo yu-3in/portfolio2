@@ -5,8 +5,8 @@ import { SectionHeading } from '@/components/elements/heading'
 import { WorkList } from '@/features/work/components'
 import { GetStaticProps } from 'next'
 import { Work } from '@/features/work/types/Work'
-import { getHighlightWorks } from '@/features/work/api/getHighlightWorks'
-import { useEffect, useState } from 'react'
+import { getAllHighlightWorks } from '@/features/work/api/getAllHighlightWorks'
+import { useState } from 'react'
 import { getPlaiceholder } from 'plaiceholder'
 
 export type HomeProps = {
@@ -43,7 +43,7 @@ const Home: React.FC<HomeProps> = (props) => {
 export default Home
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  let works = await getHighlightWorks()
+  let works = await getAllHighlightWorks()
 
   // Add blurDataURL
   works =
