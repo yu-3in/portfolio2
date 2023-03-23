@@ -4,14 +4,14 @@ import { GradientContainer } from '@/components/layouts/container/GradientContai
 import { getAllWorks } from '@/features/work/api/getAllWorks'
 import { WorkList } from '@/features/work/components'
 import { Work } from '@/features/work/types/Work'
-import { GetStaticProps } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import { getPlaiceholder } from 'plaiceholder'
 
 export type WorksPageProps = {
   works: Work[] | null
 }
 
-const WorksPage: React.FC<WorksPageProps> = ({ works }) => {
+const WorksPage: NextPage<WorksPageProps> = ({ works }) => {
   return (
     <GradientContainer
       fromColor="rgba(190, 255, 250, 0.51)"

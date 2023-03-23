@@ -3,7 +3,7 @@ import { Container } from '@/components/layouts/container/Container'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
 import { SectionHeading } from '@/components/elements/heading'
 import { WorkList } from '@/features/work/components'
-import { GetStaticProps } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import { Work } from '@/features/work/types/Work'
 import { getAllHighlightWorks } from '@/features/work/api/getAllHighlightWorks'
 import { useState } from 'react'
@@ -13,7 +13,7 @@ export type HomeProps = {
   works: Work[] | null
 }
 
-const Home: React.FC<HomeProps> = (props) => {
+const Home: NextPage<HomeProps> = (props) => {
   const [works, setWorks] = useState<Work[] | null>(props.works)
 
   return (

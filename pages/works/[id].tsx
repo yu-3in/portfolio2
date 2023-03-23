@@ -1,7 +1,9 @@
-export type WorkPageProps = {};
+import { NextPage } from 'next'
 
-const WorkPage: React.FC<WorkPageProps> = () => {
-  return <>[id]</>;
-};
+export type WorkPageProps = {}
 
-export default WorkPage;
+const WorkPage: NextPage<WorkPageProps> = () => {
+  return <>[id]</>
+}
+
+export default WorkPage
