@@ -4,10 +4,18 @@ import { Container } from '@/components/layouts/container/Container'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
 import { SectionHeading } from '@/components/elements/heading'
 import { WorkList } from '@/features/work/components'
+import { GetStaticProps } from 'next'
+import { Work } from '@/features/work/types/Work'
+import { getHighlightWorks } from '@/features/work/api/getHighlightWorks'
+import { useEffect, useState } from 'react'
 
-const inter = Inter({ subsets: ['latin'] })
+export type HomeProps = {
+  works: Work[] | null
+}
 
-export default function Home() {
+const Home: React.FC<HomeProps> = (props) => {
+  const [works, setWorks] = useState<Work[] | null>(props.works)
+
   return (
     <>
       <div
@@ -25,9 +33,19 @@ export default function Home() {
       >
         <Container className="pt-16">
           <SectionHeading>Works</SectionHeading>
-          <WorkList />
+          <WorkList works={works} />
         </Container>
       </GradientContainer>
     </>
   )
+}
+
+export default Home
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  const works = await getHighlightWorks()
+
+  return {
+    props: { works },
+  }
 }
