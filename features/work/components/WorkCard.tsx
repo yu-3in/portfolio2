@@ -3,7 +3,6 @@ import { CHIP_STYLE, CHIP_STYLE_OUTLINED } from '@/constants/chip'
 import { Favorite, FavoriteBorder } from '@mui/icons-material'
 import { Chip, IconButton } from '@mui/material'
 import axios from 'axios'
-import HTMLReactParser from 'html-react-parser'
 import Image from 'next/image'
 import { useCallback, useState } from 'react'
 import { Work } from '../types/Work'
@@ -84,9 +83,9 @@ export const WorkCard: React.FC<WorkCardProps> = ({ work }) => {
             })}
           </ul>
         </div>
-        <p>
+        <div>
           <ParsedHTML html={work.description} />
-        </p>
+        </div>
         <ul className="flex list-none flex-wrap gap-2">
           {work.tags.map((tag) => {
             const className = CHIP_STYLE[tag.type[0]]
