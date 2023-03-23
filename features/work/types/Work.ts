@@ -1,14 +1,14 @@
 import { Skill } from '@/features/skill/types/Skill'
 import { Image } from '@/types/Image'
-import { WorkCategory } from './WorkCateogry'
+import { WorkCategory } from './WorkCategory'
 import { WorkTag } from './WorkTag'
 
 export type Work = {
   id: string
-  createdAt: string
-  updatedAt: string
-  publishedAt: string
-  revisedAt: string
+  createdAt: Date
+  updatedAt: Date
+  publishedAt: Date
+  revisedAt: Date
   title: string
   slug: string
   description: string
@@ -20,8 +20,8 @@ export type Work = {
   impressions?: string
   coverImage?: Image
   thumbnail?: Image
-  startDate: string
-  endDate?: string
+  startDate: Date
+  endDate?: Date
   duration?: string
   favoriteCount?: number
   highlight: boolean
