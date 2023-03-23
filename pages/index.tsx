@@ -8,6 +8,7 @@ import { GetStaticProps } from 'next'
 import { Work } from '@/features/work/types/Work'
 import { getHighlightWorks } from '@/features/work/api/getHighlightWorks'
 import { useEffect, useState } from 'react'
+import { getPlaiceholder } from 'plaiceholder'
 
 export type HomeProps = {
   works: Work[] | null
@@ -43,7 +44,22 @@ const Home: React.FC<HomeProps> = (props) => {
 export default Home
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const works = await getHighlightWorks()
+  let works = await getHighlightWorks()
+
+  // Add blurDataURL
+  works =
+    works != null
+      ? await Promise.all(
+          works.map(async (work) => {
+            console.log(work.thumbnail)
+            if (work?.thumbnail?.url) {
+              const { base64 } = await getPlaiceholder(work.thumbnail?.url)
+              work.thumbnail.blurDataURL = base64
+            }
+            return work
+          }),
+        )
+      : null
 
   return {
     props: { works },

@@ -12,7 +12,6 @@ export type WorkCardProps = {
 
 export const WorkCard: React.FC<WorkCardProps> = ({ work }) => {
   const [favoriteCountStatus, setFavoriteCountStatus] = useState('increment')
-  console.log(favoriteCountStatus)
 
   const handleClickFavorite = useCallback(async () => {
     let count = work.favoriteCount ?? 0
@@ -48,7 +47,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({ work }) => {
               width: '100%',
               height: 'auto',
               // fade in
-              transition: '0.7s',
+              transition: '0.2s',
             }}
             sizes="50vw"
           />
