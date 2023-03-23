@@ -20,6 +20,7 @@
     "classnames": "^2.3.2",
     "eslint": "^8.0.1",
     "eslint-config-next": "13.2.4",
+    "html-react-parser": "^3.0.13",
     "microcms-js-sdk": "^2.3.2",
     "next": "13.2.4",
     "plaiceholder": "^2.5.0",
