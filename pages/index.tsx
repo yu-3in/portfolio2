@@ -12,6 +12,7 @@ import { getProfile } from '@/features/profile/api/getProfile'
 import { Profile } from '@/features/profile/types/Profile'
 import { ExperienceList, ProfileBox } from '@/features/profile/components'
 import { profile } from 'console'
+import { ShowMoreButton } from '@/components/elements/button'
 
 export type HomeProps = {
   works: Work[] | null
@@ -39,6 +40,9 @@ const Home: NextPage<HomeProps> = (props) => {
         <Container>
           <SectionHeading>Works</SectionHeading>
           <WorkList works={works} />
+          <div className="mt-16 flex justify-center">
+            <ShowMoreButton href="/works" />
+          </div>
         </Container>
       </GradientContainer>
       <GradientContainer
@@ -51,6 +55,9 @@ const Home: NextPage<HomeProps> = (props) => {
           <SectionHeading>Profile</SectionHeading>
           <ProfileBox />
           <ExperienceList experiences={props.profile?.experiences} />
+          <div className="mt-12 flex justify-center">
+            <ShowMoreButton href="/profile" />
+          </div>
         </Container>
       </GradientContainer>
     </>

@@ -1,2 +1,2 @@
-export * from "./MoreButton";
-export * from "./PrevNextButton";
+export * from './ShowMoreButton'
+export * from './PrevNextButton'
