@@ -12,7 +12,7 @@ export type Profile = {
   sei: string
   profileImage: Image
   content?: string
-  birthdate: Date
+  birthday: Date
   gender: Generator[]
   university: string
   faculty: string
@@ -21,4 +21,6 @@ export type Profile = {
   twitter?: string
   github?: string
   experiences: Experience[]
+  belief?: string
+  jobType?: string
 }

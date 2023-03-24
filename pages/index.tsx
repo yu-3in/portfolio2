@@ -7,11 +7,13 @@ import { GetStaticProps, NextPage } from 'next'
 import { Work } from '@/features/work/types/Work'
 import { getAllHighlightWorks } from '@/features/work/api/getAllHighlightWorks'
 import { useState } from 'react'
-import { getPlaiceholder } from 'plaiceholder'
 import { addBlurDataURLToWork } from '@/features/work/libs/addBlurDataURLToWork'
+import { getProfile } from '@/features/profile/api/getProfile'
+import { Profile } from '@/features/profile/types/Profile'
 
 export type HomeProps = {
   works: Work[] | null
+  profile: Profile | null
 }
 
 const Home: NextPage<HomeProps> = (props) => {
@@ -25,14 +27,14 @@ const Home: NextPage<HomeProps> = (props) => {
           backgroundImage: 'url(/hero.jpg)',
         }}
       ></div>
-      <Hero />
+      <Hero profile={props.profile} />
       <GradientContainer
         fromColor="rgba(190, 255, 250, 0.51)"
         toColor="rgba(172, 240, 244, 0.91)"
         direction="to-b"
-        className="relative"
+        className="relative pt-16"
       >
-        <Container className="pt-16">
+        <Container>
           <SectionHeading>Works</SectionHeading>
           <WorkList works={works} />
         </Container>
@@ -44,12 +46,15 @@ const Home: NextPage<HomeProps> = (props) => {
 export default Home
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  // works
   let works = await getAllHighlightWorks()
 
   // Add blurDataURL
   works = works != null ? await addBlurDataURLToWork(works) : null
 
+  let profile = (await getProfile()) ?? null
+
   return {
-    props: { works },
+    props: { works, profile },
   }
 }
