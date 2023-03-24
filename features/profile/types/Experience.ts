@@ -7,8 +7,8 @@ export type Experience = {
   subTitle?: string
   image?: Image
   type: ExperienceType[]
-  startDate: Date
-  endDate?: Date
+  startDate: string
+  endDate?: string
   description?: string
   highlight: boolean
 }

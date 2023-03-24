@@ -1,9 +1,9 @@
 export type Skill = {
   id: string
-  createdAt: Date
-  updatedAt: Date
-  publishedAt: Date
-  revisedAt: Date
+  createdAt: string
+  updatedAt: string
+  publishedAt: string
+  revisedAt: string
   title: string
   slug: string
   description?: string
