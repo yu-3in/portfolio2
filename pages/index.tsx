@@ -10,6 +10,8 @@ import { useState } from 'react'
 import { addBlurDataURLToWork } from '@/features/work/libs/addBlurDataURLToWork'
 import { getProfile } from '@/features/profile/api/getProfile'
 import { Profile } from '@/features/profile/types/Profile'
+import { ExperienceList, ProfileBox } from '@/features/profile/components'
+import { profile } from 'console'
 
 export type HomeProps = {
   works: Work[] | null
@@ -39,6 +41,18 @@ const Home: NextPage<HomeProps> = (props) => {
           <WorkList works={works} />
         </Container>
       </GradientContainer>
+      <GradientContainer
+        fromColor="rgba(172, 240, 244, 0.91)"
+        toColor="rgba(154, 158, 243, 0.31)"
+        direction="to-b"
+        className="pt-16"
+      >
+        <Container>
+          <SectionHeading>Profile</SectionHeading>
+          <ProfileBox />
+          <ExperienceList experiences={props.profile?.experiences} />
+        </Container>
+      </GradientContainer>
     </>
   )
 }
@@ -48,11 +62,17 @@ export default Home
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   // works
   let works = await getAllHighlightWorks()
-
   // Add blurDataURL
   works = works != null ? await addBlurDataURLToWork(works) : null
 
+  // profile
   let profile = (await getProfile()) ?? null
+  // order experiences
+  if (profile?.experiences) {
+    profile.experiences = profile?.experiences.sort((a, b) =>
+      a.startDate > b.startDate ? -1 : 1,
+    )
+  }
 
   return {
     props: { works, profile },

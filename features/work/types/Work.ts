@@ -5,10 +5,10 @@ import { WorkTag } from './WorkTag'
 
 export type Work = {
   id: string
-  createdAt: Date
-  updatedAt: Date
-  publishedAt: Date
-  revisedAt: Date
+  createdAt: string
+  updatedAt: string
+  publishedAt: string
+  revisedAt: string
   title: string
   slug: string
   description: string
@@ -20,8 +20,8 @@ export type Work = {
   impressions?: string
   coverImage?: Image
   thumbnail?: Image
-  startDate: Date
-  endDate?: Date
+  startDate: string
+  endDate?: string
   duration?: string
   favoriteCount?: number
   highlight: boolean

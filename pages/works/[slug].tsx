@@ -3,11 +3,7 @@ import { Container } from '@/components/layouts/container/Container'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
 import { getAllWorkSlugs } from '@/features/work/api/getAllWorkSlugs'
 import { getWorkBySlug } from '@/features/work/api/getWorkBySlug'
-import {
-  WorkCategoryList,
-  WorkList,
-  WorkTags,
-} from '@/features/work/components'
+import { WorkCategoryList, WorkTags } from '@/features/work/components'
 import { addBlurDataURLToWork } from '@/features/work/libs/addBlurDataURLToWork'
 import { Work } from '@/features/work/types/Work'
 import { NextPage, GetStaticPaths, GetStaticProps } from 'next'
@@ -121,6 +117,7 @@ export const getStaticProps: GetStaticProps<WorkPageProps, IParams> = async ({
 }) => {
   const work =
     params?.slug != undefined ? await getWorkBySlug(params?.slug) : undefined
+  // TODO: prev, next works
 
   if (work == null) {
     return {

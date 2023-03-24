@@ -50,9 +50,10 @@ export const WorkCard: React.FC<WorkCardProps> = ({ work }) => {
               style={{
                 // layout: responsive
                 width: '100%',
-                height: 'auto',
+                height: '250px',
                 // fade in
                 transition: '0.2s',
+                objectFit: 'cover',
               }}
               sizes="50vw"
             />
