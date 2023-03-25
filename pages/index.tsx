@@ -13,6 +13,7 @@ import { Profile } from '@/features/profile/types/Profile'
 import { ExperienceList, ProfileBox } from '@/features/profile/components'
 import { profile } from 'console'
 import { ShowMoreButton } from '@/components/elements/button'
+import { getPlaiceholder } from 'plaiceholder'
 
 export type HomeProps = {
   works: Work[] | null
@@ -53,7 +54,9 @@ const Home: NextPage<HomeProps> = (props) => {
       >
         <Container>
           <SectionHeading>Profile</SectionHeading>
-          <ProfileBox />
+        </Container>
+        <ProfileBox profile={props.profile} />
+        <Container>
           <ExperienceList experiences={props.profile?.experiences} />
           <div className="mt-12 flex justify-center">
             <ShowMoreButton href="/profile" />
@@ -74,6 +77,14 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 
   // profile
   let profile = (await getProfile()) ?? null
+  // Add blurDataURL
+  if (profile?.profileImage) {
+    const { base64: profileImageBase64 } = await getPlaiceholder(
+      profile?.profileImage.url,
+    )
+    profile.profileImage.blurDataURL = profileImageBase64
+  }
+
   // order experiences
   if (profile?.experiences) {
     profile.experiences = profile?.experiences.sort((a, b) =>

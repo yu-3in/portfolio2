@@ -1,5 +1,7 @@
 import { Image } from '@/types/Image'
 import { Experience } from './Experience'
+import { Job } from './Job'
+import { Qualification } from './Qualification'
 
 export type Profile = {
   createdAt: string
@@ -10,6 +12,7 @@ export type Profile = {
   lastName: string
   mei: string
   sei: string
+  email: string
   profileImage: Image
   content?: string
   birthday: string
@@ -21,6 +24,8 @@ export type Profile = {
   twitter?: string
   github?: string
   experiences: Experience[]
+  jobs: Job[]
   belief?: string
   jobType?: string
+  qualifications: Qualification[]
 }

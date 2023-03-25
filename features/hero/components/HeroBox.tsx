@@ -27,12 +27,20 @@ export const HeroBox: React.FC<HeroBoxProps> = ({ profile }) => {
         </div>
         <div className="mx-auto grid w-1/2 grid-cols-2">
           <div>
-            <a href={`https://twitter.com/${profile?.twitter}/`}>
-              <TwitterIcon fontSize="large" />
+            <a
+              href={`https://twitter.com/${profile?.twitter}/`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <TwitterIcon fontSize="large" className="text-[#1DA1F2]" />
             </a>
           </div>
           <div>
-            <a href={`https://github.com/${profile?.github}`}>
+            <a
+              href={`https://github.com/${profile?.github}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <GitHubIcon fontSize="large" />
             </a>
           </div>
