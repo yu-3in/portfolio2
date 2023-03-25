@@ -15,10 +15,10 @@ export const Header: React.FC<HeaderProps> = () => {
     <header>
       <div
         className={classNames(
-          'fixed left-1/2 right-1/2 z-30 mx-auto w-10/12 -translate-x-1/2',
+          'fixed left-1/2 right-1/2 z-30 mx-auto -translate-x-1/2',
           {
-            'top-4': !md,
-            'top-8': md,
+            'top-4 w-11/12': !md,
+            'top-8 w-10/12': md,
           },
         )}
       >
