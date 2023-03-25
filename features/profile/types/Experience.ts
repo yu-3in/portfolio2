@@ -1,3 +1,4 @@
+import { Work } from '@/features/work/types/Work'
 import { Image } from '@/types/Image'
 import { ExperienceType } from './ExperienceType'
 
@@ -12,4 +13,7 @@ export type Experience = {
   description?: string
   highlight: boolean
   defaultExpanded: boolean
+  work?: Work
+  url?: string
+  urlText?: string
 }

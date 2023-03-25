@@ -4,8 +4,11 @@ import Image from 'next/image'
 import { SyntheticEvent, useMemo, useState } from 'react'
 import { Experience } from '../types/Experience'
 import SchoolIcon from '@mui/icons-material/School'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import LinkIcon from '@mui/icons-material/Link'
 import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
-import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material'
+import { WorkCard } from '@/features/work/components'
 
 export type ExperienceItemProps = { experience: Experience }
 
@@ -14,6 +17,12 @@ const imageSize = '4em'
 export const ExperienceItem: React.FC<ExperienceItemProps> = ({
   experience,
 }) => {
+  const [isAccordionEnabled, setIsAccordionEnabled] = useState<boolean>(
+    Boolean(experience.description) ||
+      Boolean(experience.work) ||
+      Boolean(experience.url),
+  )
+
   const [expanded, setExpanded] = useState<boolean>(
     (experience.defaultExpanded && !!experience?.description) ?? false,
   )
@@ -79,23 +88,46 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
                 <div className="text-sm text-gray-500">
                   {experience.subTitle}
                 </div>
-                {experience.description && (
+                {isAccordionEnabled && (
                   <div className="mt-1">
                     <ParsedHTML html={experience.description} />
                   </div>
                 )}
               </div>
-              {experience.description ? (
+              {isAccordionEnabled ? (
                 expanded ? (
-                  <KeyboardArrowDown fontSize="large" />
+                  <KeyboardArrowDownIcon fontSize="large" />
                 ) : (
-                  <KeyboardArrowUp fontSize="large" />
+                  <KeyboardArrowUpIcon fontSize="large" />
                 )
               ) : undefined}
             </div>
           </AccordionSummary>
-          {experience.description && (
-            <AccordionDetails>{experience.description}</AccordionDetails>
+
+          {Boolean(experience.description) && (
+            <AccordionDetails>
+              <div className="flex flex-col gap-4">
+                <div>{experience.description}</div>
+                {experience.url && (
+                  <div className="flex items-center gap-2">
+                    <LinkIcon />
+                    <a
+                      href={experience.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline"
+                    >
+                      {experience.urlText ?? experience.url}
+                    </a>
+                  </div>
+                )}
+                {experience.work && (
+                  <div>
+                    <WorkCard work={experience.work} />
+                  </div>
+                )}
+              </div>
+            </AccordionDetails>
           )}
         </Accordion>
       </div>
