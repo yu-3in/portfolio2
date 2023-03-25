@@ -1,7 +1,7 @@
 import { SectionHeading } from '@/components/elements/heading'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
 import { Footer } from '@/components/layouts/footer'
-import { getProfile } from '@/features/profile/api/getProfile'
+import { getProfile } from '@/features/profile/apis/getProfile'
 import { ExperienceList, ProfileBox } from '@/features/profile/components'
 import { addBlurDataURLToProfile } from '@/features/profile/libs/addBlurDataURLToProfile'
 import { Profile } from '@/features/profile/types/Profile'
