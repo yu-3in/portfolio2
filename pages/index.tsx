@@ -12,9 +12,9 @@ import { getProfile } from '@/features/profile/api/getProfile'
 import { Profile } from '@/features/profile/types/Profile'
 import { ExperienceList, ProfileBox } from '@/features/profile/components'
 import { ShowMoreButton } from '@/components/elements/button'
-import { getPlaiceholder } from 'plaiceholder'
 import { ContactForm } from '@/features/contact/components'
 import { Footer } from '@/components/layouts/footer'
+import { addBlurDataURLToProfile } from '@/features/profile/libs/addBlurDataURLToProfile'
 
 export type HomeProps = {
   works: Work[] | null
@@ -100,21 +100,13 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   works = works != null ? await addBlurDataURLToWork(works) : null
 
   // profile
-  let profile = (await getProfile()) ?? null
+  let profile = await getProfile({
+    experience: {
+      highlight: true,
+    },
+  })
   // Add blurDataURL
-  if (profile?.profileImage) {
-    const { base64: profileImageBase64 } = await getPlaiceholder(
-      profile?.profileImage.url,
-    )
-    profile.profileImage.blurDataURL = profileImageBase64
-  }
-
-  // order experiences
-  if (profile?.experiences) {
-    profile.experiences = profile?.experiences.sort((a, b) =>
-      a.startDate > b.startDate ? -1 : 1,
-    )
-  }
+  profile = profile != null ? await addBlurDataURLToProfile(profile) : null
 
   return {
     props: { works, profile },
