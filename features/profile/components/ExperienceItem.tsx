@@ -1,5 +1,5 @@
 import { ParsedHTML } from '@/components/elements/content/parseHTML'
-import { formatDate } from '@/features/work/libs/formatDate'
+import { formatDate } from '@/libs/formatDate'
 import Image from 'next/image'
 import { SyntheticEvent, useMemo, useState } from 'react'
 import { Experience } from '../types/Experience'
