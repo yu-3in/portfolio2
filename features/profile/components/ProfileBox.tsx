@@ -17,7 +17,7 @@ export type ProfileBoxProps = {
 
 export const ProfileBox: React.FC<ProfileBoxProps> = ({ profile }) => {
   return (
-    <div className="relative mt-32 bg-white/50 pb-8">
+    <div className="relative mt-32 bg-white/50 pb-16">
       {/* gradation */}
       <div className="h-full overflow-hidden">
         <div
