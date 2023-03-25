@@ -17,10 +17,10 @@ export const ProfileTitleContent: React.FC<ProfileTitleContentProps> = ({
     <div>
       <div className="mb-4 flex gap-2">
         {icon}
-        <h3 className="text-lg font-semibold">{title}</h3>
+        <h3 className="text-xl font-semibold">{title}</h3>
       </div>
 
-      <div className={classNames('ml-2 text-xl', className)}>{children}</div>
+      <div className={classNames('ml-2', className)}>{children}</div>
     </div>
   )
 }
