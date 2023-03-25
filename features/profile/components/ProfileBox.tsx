@@ -18,6 +18,23 @@ export type ProfileBoxProps = {
 export const ProfileBox: React.FC<ProfileBoxProps> = ({ profile }) => {
   return (
     <div className="relative mt-32 bg-white/50 pb-8">
+      {/* gradation */}
+      <div className="h-full overflow-hidden">
+        <div
+          className="absolute -left-[15%] top-[60%] bottom-1/2 h-[130%] w-[70%]  min-w-[768px] -translate-y-1/2"
+          style={{
+            background:
+              'radial-gradient(50% 50% at 50% 50%, #00DACD -150%, rgba(217, 217, 217, 0) 100%)',
+          }}
+        ></div>
+        <div
+          className="absolute -right-[25%] top-[40%] bottom-1/2 h-[120%] w-[90%]  min-w-[768px] -translate-y-1/2"
+          style={{
+            background:
+              'radial-gradient(50% 50% at 50% 50%, #0075FF -170%, rgba(217, 217, 217, 0) 100%)',
+          }}
+        ></div>
+      </div>
       <Container>
         <div className="mt-32 flex flex-col gap-5">
           <div>
