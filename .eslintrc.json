@@ -19,9 +19,9 @@
         "react"
     ],
     "ignorePatterns": [
-    "*.config.js"
-  ],
+        "*.config.js"
+    ],
     "rules": {
-        "prettier/prettier": "error",
+        "prettier/prettier": "error"
     }
 }
