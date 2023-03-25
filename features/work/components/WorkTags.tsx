@@ -16,7 +16,7 @@ export const WorkTags: React.FC<WorkTagsProps> = ({
       {tags.map((tag) => {
         const className = CHIP_STYLE[tag.type[0]]
         return (
-          <li className="inline-block">
+          <li className="inline-block" key={tag.title}>
             <Chip
               label={tag.title}
               size={size}

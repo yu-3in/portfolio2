@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { Experience } from '../types/Experience'
 import { ExperienceItem } from './ExperienceItem'
 
@@ -7,9 +8,11 @@ export const ExperienceList: React.FC<ExperienceListProps> = ({
   experiences,
 }) => {
   return (
-    <ul className="flex list-none flex-col gap-10 overflow-y-hidden">
+    <ul className="flex list-none flex-col gap-8 overflow-y-hidden">
       {experiences?.map((experience) => (
-        <ExperienceItem experience={experience} />
+        <Fragment key={experience.title}>
+          <ExperienceItem experience={experience} />
+        </Fragment>
       ))}
     </ul>
   )

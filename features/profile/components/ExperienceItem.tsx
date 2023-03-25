@@ -1,9 +1,11 @@
 import { ParsedHTML } from '@/components/elements/content/parseHTML'
 import { formatDate } from '@/features/work/libs/formatDate'
 import Image from 'next/image'
-import { useMemo } from 'react'
+import { SyntheticEvent, useMemo, useState } from 'react'
 import { Experience } from '../types/Experience'
 import SchoolIcon from '@mui/icons-material/School'
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
+import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material'
 
 export type ExperienceItemProps = { experience: Experience }
 
@@ -12,6 +14,14 @@ const imageSize = '4em'
 export const ExperienceItem: React.FC<ExperienceItemProps> = ({
   experience,
 }) => {
+  const [expanded, setExpanded] = useState<boolean>(
+    (experience.defaultExpanded && !!experience?.description) ?? false,
+  )
+
+  const handleChange = (event: SyntheticEvent, newExpanded: boolean) => {
+    setExpanded(newExpanded)
+  }
+
   const formattedStartDate = useMemo(
     () => formatDate(new Date(experience.startDate), 'YYYY/MM'),
     [experience.startDate],
@@ -54,16 +64,40 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
             </div>
           )}
         </div>
-        <div className="basis-10/12">
-          <time dateTime={formattedStartDate}>{formattedStartDate}</time>
-          <h3 className="text-xl font-bold">{experience.title}</h3>
-          <div className="text-sm text-gray-500">{experience.subTitle}</div>
-          {experience.description && (
-            <div className="mt-1">
-              <ParsedHTML html={experience.description} />
+        <Accordion
+          className="basis-10/12 border-none bg-transparent shadow-none before:content-none"
+          expanded={expanded}
+          disableGutters
+          elevation={0}
+          onChange={handleChange}
+        >
+          <AccordionSummary>
+            <div className="flex w-full items-center justify-between gap-4">
+              <div>
+                <time dateTime={formattedStartDate}>{formattedStartDate}</time>
+                <h3 className="text-xl font-bold">{experience.title}</h3>
+                <div className="text-sm text-gray-500">
+                  {experience.subTitle}
+                </div>
+                {experience.description && (
+                  <div className="mt-1">
+                    <ParsedHTML html={experience.description} />
+                  </div>
+                )}
+              </div>
+              {experience.description ? (
+                expanded ? (
+                  <KeyboardArrowDown fontSize="large" />
+                ) : (
+                  <KeyboardArrowUp fontSize="large" />
+                )
+              ) : undefined}
             </div>
+          </AccordionSummary>
+          {experience.description && (
+            <AccordionDetails>{experience.description}</AccordionDetails>
           )}
-        </div>
+        </Accordion>
       </div>
     </li>
   )

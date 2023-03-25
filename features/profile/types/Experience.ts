@@ -11,4 +11,5 @@ export type Experience = {
   endDate?: string
   description?: string
   highlight: boolean
+  defaultExpanded: boolean
 }
