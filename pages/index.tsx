@@ -11,9 +11,9 @@ import { addBlurDataURLToWork } from '@/features/work/libs/addBlurDataURLToWork'
 import { getProfile } from '@/features/profile/api/getProfile'
 import { Profile } from '@/features/profile/types/Profile'
 import { ExperienceList, ProfileBox } from '@/features/profile/components'
-import { profile } from 'console'
 import { ShowMoreButton } from '@/components/elements/button'
 import { getPlaiceholder } from 'plaiceholder'
+import { ContactForm } from '@/features/contact/components'
 
 export type HomeProps = {
   works: Work[] | null
@@ -56,11 +56,33 @@ const Home: NextPage<HomeProps> = (props) => {
           <SectionHeading>Profile</SectionHeading>
         </Container>
         <ProfileBox profile={props.profile} />
-        <Container>
+        <Container className="mt-16">
           <ExperienceList experiences={props.profile?.experiences} />
           <div className="mt-12 flex justify-center">
             <ShowMoreButton href="/profile" />
           </div>
+        </Container>
+      </GradientContainer>
+      <GradientContainer
+        fromColor="rgba(154, 158, 243, 0.31)"
+        toColor="rgba(244, 172, 215, 0.91)"
+        direction="to-b"
+        className="pt-16"
+      >
+        <Container>
+          <SectionHeading>Skills</SectionHeading>
+          <div className="h-screen"></div>
+        </Container>
+      </GradientContainer>
+      <GradientContainer
+        fromColor="rgba(244, 172, 215, 0.91)"
+        toColor="rgba(246, 249, 117, 0.78)"
+        direction="to-b"
+        className="pt-16"
+      >
+        <Container>
+          <SectionHeading>Contact</SectionHeading>
+          <ContactForm />
         </Container>
       </GradientContainer>
     </>
