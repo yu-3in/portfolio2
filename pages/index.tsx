@@ -14,6 +14,7 @@ import { ExperienceList, ProfileBox } from '@/features/profile/components'
 import { ShowMoreButton } from '@/components/elements/button'
 import { getPlaiceholder } from 'plaiceholder'
 import { ContactForm } from '@/features/contact/components'
+import { Footer } from '@/components/layouts/footer'
 
 export type HomeProps = {
   works: Work[] | null
@@ -84,6 +85,7 @@ const Home: NextPage<HomeProps> = (props) => {
           <SectionHeading>Contact</SectionHeading>
           <ContactForm />
         </Container>
+        <Footer />
       </GradientContainer>
     </>
   )

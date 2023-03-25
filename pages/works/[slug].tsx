@@ -1,6 +1,7 @@
 import { ParsedHTML } from '@/components/elements/content/parseHTML'
 import { Container } from '@/components/layouts/container/Container'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
+import { Footer } from '@/components/layouts/footer'
 import { getAllWorkSlugs } from '@/features/work/api/getAllWorkSlugs'
 import { getWorkBySlug } from '@/features/work/api/getWorkBySlug'
 import { WorkCategoryList, WorkTags } from '@/features/work/components'
@@ -96,6 +97,7 @@ const WorkPage: NextPage<WorkPageProps> = ({ work }) => {
           </div>
         </div>
       </Container>
+      <Footer />
     </GradientContainer>
   )
 }

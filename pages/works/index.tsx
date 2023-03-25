@@ -1,6 +1,7 @@
 import { SectionHeading } from '@/components/elements/heading'
 import { Container } from '@/components/layouts/container/Container'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
+import { Footer } from '@/components/layouts/footer'
 import { getAllWorks } from '@/features/work/api/getAllWorks'
 import { WorkList } from '@/features/work/components'
 import { addBlurDataURLToWork } from '@/features/work/libs/addBlurDataURLToWork'
@@ -23,6 +24,7 @@ const WorksPage: NextPage<WorksPageProps> = ({ works }) => {
         <SectionHeading>Works</SectionHeading>
         <WorkList works={works} />
       </Container>
+      <Footer />
     </GradientContainer>
   )
 }
