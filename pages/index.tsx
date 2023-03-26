@@ -15,6 +15,7 @@ import { ShowMoreButton } from '@/components/elements/button'
 import { ContactForm } from '@/features/contact/components'
 import { Footer } from '@/components/layouts/footer'
 import { addBlurDataURLToProfile } from '@/features/profile/libs/addBlurDataURLToProfile'
+import { ProfileVision } from '@/features/profile/components/ProfileVision'
 
 export type HomeProps = {
   works: Work[] | null
@@ -53,10 +54,13 @@ const Home: NextPage<HomeProps> = (props) => {
         direction="to-b"
         className="pt-16"
       >
+        {props.profile?.vision && (
+          <ProfileVision vision={props.profile?.vision} />
+        )}
         <Container>
           <SectionHeading>Profile</SectionHeading>
         </Container>
-        <ProfileBox profile={props.profile} />
+        <ProfileBox profile={props.profile} className="" />
         <Container className="mt-16">
           <ExperienceList experiences={props.profile?.experiences} />
           <div className="mt-12 flex justify-center">

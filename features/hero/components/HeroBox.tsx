@@ -2,6 +2,7 @@ import TwitterIcon from '@mui/icons-material/Twitter'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import { Profile } from '@/features/profile/types/Profile'
 import { MIN_WIDTH } from '@/constants/responsive'
+import { stripHtmlTags } from '@/libs/stripHtmlTags'
 
 export type HeroBoxProps = { profile: Profile | null }
 
@@ -17,7 +18,7 @@ export const HeroBox: React.FC<HeroBoxProps> = ({ profile }) => {
     >
       <div className="flex flex-col gap-2 text-center">
         <div className="bg-gradient-to-r from-[#09CCAB] to-[#D81BDC] bg-clip-text text-[24px] font-bold text-transparent">
-          <div>{profile?.belief}</div>
+          <div>{stripHtmlTags(profile?.vision?.title ?? '')}</div>
         </div>
         <div className="text-[64px] leading-[1.1em] sm:text-[72px] md:text-[86px]">
           <div className="flex justify-center">

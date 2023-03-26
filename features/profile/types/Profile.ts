@@ -2,6 +2,7 @@ import { Image } from '@/types/Image'
 import { Experience } from './Experience'
 import { Job } from './Job'
 import { Qualification } from './Qualification'
+import { Vision } from './Vision'
 
 export type Profile = {
   createdAt: string
@@ -25,7 +26,7 @@ export type Profile = {
   github?: string
   experiences: Experience[]
   jobs: Job[]
-  belief?: string
+  vision?: Vision
   jobType?: string
   qualifications: Qualification[]
 }

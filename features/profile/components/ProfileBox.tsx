@@ -10,14 +10,19 @@ import { ProfileTitleContent } from './ProfileTitleContent'
 import { getAge } from '../libs/getAge'
 import SchoolIcon from '@mui/icons-material/School'
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline'
+import classNames from 'classnames'
 
 export type ProfileBoxProps = {
   profile: Profile | null
+  className?: string
 }
 
-export const ProfileBox: React.FC<ProfileBoxProps> = ({ profile }) => {
+export const ProfileBox: React.FC<ProfileBoxProps> = ({
+  profile,
+  className,
+}) => {
   return (
-    <div>
+    <div className={classNames(className)}>
       <div className="relative z-10">
         <figure>
           <Image

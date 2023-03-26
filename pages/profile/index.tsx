@@ -3,6 +3,7 @@ import { GradientContainer } from '@/components/layouts/container/GradientContai
 import { Footer } from '@/components/layouts/footer'
 import { getProfile } from '@/features/profile/apis/getProfile'
 import { ExperienceList, ProfileBox } from '@/features/profile/components'
+import { ProfileVision } from '@/features/profile/components/ProfileVision'
 import { addBlurDataURLToProfile } from '@/features/profile/libs/addBlurDataURLToProfile'
 import { Profile } from '@/features/profile/types/Profile'
 import { Container } from '@mui/material'
@@ -21,7 +22,8 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ profile }) => {
       <Container>
         <SectionHeading>Profile</SectionHeading>
       </Container>
-      <ProfileBox profile={profile} />
+      <ProfileVision vision={profile?.vision} />
+      <ProfileBox profile={profile} className="mt-24" />
       <Container className="mt-16">
         <ExperienceList experiences={profile?.experiences} />
         <Footer />
