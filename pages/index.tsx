@@ -16,14 +16,22 @@ import { ContactForm } from '@/features/contact/components'
 import { Footer } from '@/components/layouts/footer'
 import { addBlurDataURLToProfile } from '@/features/profile/libs/addBlurDataURLToProfile'
 import { ProfileVision } from '@/features/profile/components/ProfileVision'
+import { getSkills } from '@/features/skill/apis/getSkills'
+import { addBlurDataURLToSkill } from '@/features/skill/libs/addBlurDataURLToSkill'
+import { GroupedSkill, Skill } from '@/features/skill/types'
+import { SkillGroupStack } from '@/features/skill/components/SkillGroupStack'
+import { getGroupedSkills } from '@/features/skill/libs/getGroupedSkills'
 
 export type HomeProps = {
   works: Work[] | null
   profile: Profile | null
+  skills: Skill[] | null
+  groupedSkills: GroupedSkill[] | null
 }
 
 const Home: NextPage<HomeProps> = (props) => {
   const [works, setWorks] = useState<Work[] | null>(props.works)
+  console.log(props.skills, props.groupedSkills)
 
   return (
     <>
@@ -60,7 +68,7 @@ const Home: NextPage<HomeProps> = (props) => {
         <Container>
           <SectionHeading>Profile</SectionHeading>
         </Container>
-        <ProfileBox profile={props.profile} className="" />
+        <ProfileBox profile={props.profile} />
         <Container className="mt-16">
           <ExperienceList experiences={props.profile?.experiences} />
           <div className="mt-12 flex justify-center">
@@ -76,7 +84,7 @@ const Home: NextPage<HomeProps> = (props) => {
       >
         <Container>
           <SectionHeading>Skills</SectionHeading>
-          <div className="h-screen"></div>
+          <SkillGroupStack groupedSkills={props.groupedSkills} />
         </Container>
       </GradientContainer>
       <GradientContainer
@@ -112,7 +120,14 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   // Add blurDataURL
   profile = profile != null ? await addBlurDataURLToProfile(profile) : null
 
+  // skills
+  let skills = await getSkills()
+  // Add blurDataURL
+  skills = skills != null ? await addBlurDataURLToSkill(skills) : null
+  // skill groups
+  let groupedSkills = getGroupedSkills(skills)
+
   return {
-    props: { works, profile },
+    props: { works, profile, skills, groupedSkills },
   }
 }
