@@ -5,6 +5,7 @@ import { Footer } from '@/components/layouts/footer'
 import { getAllWorkSlugs } from '@/features/work/apis/getAllWorkSlugs'
 import { getWorkBySlug } from '@/features/work/apis/getWorkBySlug'
 import { WorkCategoryList, WorkTags } from '@/features/work/components'
+import { WorkTitleContent } from '@/features/work/components/WorkTitleContent'
 import { addBlurDataURLToWork } from '@/features/work/libs/addBlurDataURLToWork'
 import { Work } from '@/features/work/types/Work'
 import { NextPage, GetStaticPaths, GetStaticProps } from 'next'
@@ -63,36 +64,24 @@ const WorkPage: NextPage<WorkPageProps> = ({ work }) => {
         <div className="mt-16">
           <div className="flex flex-col gap-12">
             {work.content && (
-              <div>
-                <h2 className="mb-4 text-2xl font-bold">概要</h2>
-                <div className="ml-2">
-                  <ParsedHTML html={work.content} />
-                </div>
-              </div>
+              <WorkTitleContent title="概要">
+                <ParsedHTML html={work.content} />
+              </WorkTitleContent>
             )}
             {work.duration && (
-              <div>
-                <h2 className="mb-4 text-2xl font-bold">期間</h2>
-                <div className="ml-2">
-                  <ParsedHTML html={work.duration} />
-                </div>
-              </div>
+              <WorkTitleContent title="期間">
+                <ParsedHTML html={work.duration} />
+              </WorkTitleContent>
             )}
             {work.role && (
-              <div>
-                <h2 className="mb-4 text-2xl font-bold">役割</h2>
-                <div className="ml-2">
-                  <ParsedHTML html={work.role} />
-                </div>
-              </div>
+              <WorkTitleContent title="役割">
+                <ParsedHTML html={work.role} />
+              </WorkTitleContent>
             )}
             {work.impressions && (
-              <div>
-                <h2 className="mb-4 text-2xl font-bold">所感</h2>
-                <div className="ml-2">
-                  <ParsedHTML html={work.impressions} />
-                </div>
-              </div>
+              <WorkTitleContent title="所感">
+                <ParsedHTML html={work.impressions} />
+              </WorkTitleContent>
             )}
           </div>
         </div>

@@ -1,13 +1,13 @@
 import classNames from 'classnames'
 
-export type ProfileTitleContentProps = {
+export type WorkTitleContentProps = {
   title: string
   icon?: React.ReactNode
   children: React.ReactNode
   className?: string
 }
 
-export const ProfileTitleContent: React.FC<ProfileTitleContentProps> = ({
+export const WorkTitleContent: React.FC<WorkTitleContentProps> = ({
   title,
   icon,
   children,
@@ -17,7 +17,7 @@ export const ProfileTitleContent: React.FC<ProfileTitleContentProps> = ({
     <dl>
       <dt className="mb-4 flex gap-2">
         {icon}
-        <h3 className="text-xl font-semibold">{title}</h3>
+        <h2 className="text-2xl font-bold">{title}</h2>
       </dt>
       <dd className={classNames('ml-2', className)}>{children}</dd>
     </dl>
