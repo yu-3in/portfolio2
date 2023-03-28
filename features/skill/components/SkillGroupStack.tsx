@@ -12,12 +12,15 @@ export const SkillGroupStack: React.FC<SkillGroupStackProps> = ({
   const theme = useTheme()
   const md = useMediaQuery(theme.breakpoints.up('md'))
 
-  // TODO: サブグループをフラット化する
   return (
     <div className={classNames('flex flex-col', { 'gap-24': !md })}>
       {groupedSkills?.map((groupedSkill, index) => (
         <Fragment key={groupedSkill.title}>
-          <SkillGroup groupedSkill={groupedSkill} reverse={!(index % 2)} />
+          <SkillGroup
+            groupedSkill={groupedSkill}
+            index={index}
+            reverse={!(index % 2)}
+          />
         </Fragment>
       ))}
     </div>

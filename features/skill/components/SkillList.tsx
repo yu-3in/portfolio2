@@ -13,12 +13,12 @@ export const SkillList: React.FC<SkillListProps> = ({ skills, className }) => {
   return (
     <ul
       className={classNames(
-        'grid items-center justify-center gap-8',
+        'grid items-center justify-center gap-24',
         className,
       )}
       style={{
         gridTemplateColumns: md
-          ? 'repeat(auto-fit, minmax(calc(45% / 5), calc(45% / 3)))'
+          ? 'repeat(auto-fit, minmax(calc(60% / 5), calc(60% / 3)))'
           : 'repeat(auto-fit, minmax(calc(50% / 5), calc(50% / 3)))',
       }}
     >

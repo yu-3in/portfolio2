@@ -43,7 +43,7 @@ export const getGroupedSkills = (skills: Skill[] | null): GroupedSkill[] => {
         // NOTE: 一つのカテゴリーに複数のサブグループが存在する場合、それらの並び順は追加の降順になる
         groupedSkills.splice(parentCategoryGroupSKilIndex + 1, 0, {
           title: parentSkill.title,
-          skills: [skill],
+          skills: [parentSkill, skill],
           parent: parentSkill.category[0],
         })
       } else {
