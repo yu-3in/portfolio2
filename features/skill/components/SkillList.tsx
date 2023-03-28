@@ -13,7 +13,7 @@ export const SkillList: React.FC<SkillListProps> = ({ skills, className }) => {
   return (
     <ul
       className={classNames(
-        'grid items-center justify-center gap-24',
+        'grid items-center justify-center gap-12 md:gap-24',
         className,
       )}
       style={{

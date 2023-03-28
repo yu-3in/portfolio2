@@ -21,6 +21,7 @@ import { addBlurDataURLToSkill } from '@/features/skill/libs/addBlurDataURLToSki
 import { GroupedSkill, Skill } from '@/features/skill/types'
 import { SkillGroupStack } from '@/features/skill/components/SkillGroupStack'
 import { getGroupedSkills } from '@/features/skill/libs/getGroupedSkills'
+import { useMediaQuery, useTheme } from '@mui/material'
 
 export type HomeProps = {
   works: Work[] | null
@@ -31,6 +32,8 @@ export type HomeProps = {
 
 const Home: NextPage<HomeProps> = (props) => {
   const [works, setWorks] = useState<Work[] | null>(props.works)
+  const theme = useTheme()
+  const md = useMediaQuery(theme.breakpoints.up('md'))
 
   return (
     <>
@@ -84,8 +87,11 @@ const Home: NextPage<HomeProps> = (props) => {
         <Container>
           <SectionHeading>Skills</SectionHeading>
         </Container>
-        <Container size="large">
+        <Container size={md ? 'large' : 'medium'}>
           <SkillGroupStack groupedSkills={props.groupedSkills} />
+          <div className="mt-36 flex justify-center md:mt-12">
+            <ShowMoreButton href="/skills" />
+          </div>
         </Container>
       </GradientContainer>
       <GradientContainer
