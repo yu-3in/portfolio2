@@ -31,7 +31,6 @@ export type HomeProps = {
 
 const Home: NextPage<HomeProps> = (props) => {
   const [works, setWorks] = useState<Work[] | null>(props.works)
-  console.log(props.skills, props.groupedSkills)
 
   return (
     <>
@@ -84,6 +83,8 @@ const Home: NextPage<HomeProps> = (props) => {
       >
         <Container>
           <SectionHeading>Skills</SectionHeading>
+        </Container>
+        <Container size="large">
           <SkillGroupStack groupedSkills={props.groupedSkills} />
         </Container>
       </GradientContainer>
