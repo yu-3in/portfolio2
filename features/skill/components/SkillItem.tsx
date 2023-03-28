@@ -1,12 +1,18 @@
+import classNames from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Skill } from '../types'
 
-export type SkillItemProps = { skill: Skill }
+export type SkillItemProps = { skill: Skill; className?: string }
 
-export const SkillItem: React.FC<SkillItemProps> = ({ skill }) => {
+export const SkillItem: React.FC<SkillItemProps> = ({ skill, className }) => {
   return (
-    <li>
+    <li
+      className={classNames(
+        'flex h-full items-center justify-center',
+        className,
+      )}
+    >
       <Link href={`/skills/${skill.slug}`}>
         <figure>
           <Image

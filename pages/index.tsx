@@ -79,7 +79,7 @@ const Home: NextPage<HomeProps> = (props) => {
         fromColor="rgba(154, 158, 243, 0.31)"
         toColor="rgba(244, 172, 215, 0.91)"
         direction="to-b"
-        className="pt-16"
+        className="overflow-hidden pt-16 pb-48"
       >
         <Container>
           <SectionHeading>Skills</SectionHeading>
@@ -94,7 +94,7 @@ const Home: NextPage<HomeProps> = (props) => {
         direction="to-b"
         className="pt-16"
       >
-        <Container>
+        <Container className="-mt-32">
           <SectionHeading>Contact</SectionHeading>
           <ContactForm />
         </Container>
