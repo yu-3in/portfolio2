@@ -9,6 +9,7 @@ export type SkillGroupProps = {
   index?: number
   reverse: boolean
   className?: string
+  variant?: 'default' | 'gradient'
 }
 
 // NOTE: 親要素にoverflow: hiddenを指定する必要がある
@@ -17,6 +18,7 @@ export const SkillGroup: React.FC<SkillGroupProps> = ({
   index,
   reverse = false,
   className,
+  variant = 'default',
 }) => {
   const theme = useTheme()
   const md = useMediaQuery(theme.breakpoints.up('md'))
@@ -36,46 +38,61 @@ export const SkillGroup: React.FC<SkillGroupProps> = ({
   return (
     <div
       className={classNames(
-        'relative flex items-center gap-16 md:gap-12',
         {
-          'flex-col': !md,
-          'flex-row-reverse': md && reverse,
+          // variant: "default"
+          'flex flex-col gap-8': variant === 'default',
+          'pl-12': variant === 'default' && groupedSkill.parent && md,
+
+          // variant: "gradient"
+          'relative flex items-center gap-16 md:gap-12': variant === 'gradient',
+          'flex-col': variant === 'gradient' && !md,
+          'flex-row-reverse': variant === 'gradient' && md && reverse,
         },
         className,
       )}
     >
       <h2
-        className={classNames(
-          'flex-1 text-center text-5xl text-[#044347] md:text-7xl',
-          {
-            'font-bold': !groupedSkill.parent,
-            'font-medium': groupedSkill.parent,
-          },
-        )}
+        className={classNames('flex-1 text-5xl md:text-7xl', {
+          'font-bold': !groupedSkill.parent,
+          'font-medium': groupedSkill.parent,
+
+          // variant: "default"
+          'text-3xl md:text-5xl': variant === 'default',
+          '-ml-12': variant === 'default' && md,
+
+          // variant: "gradient"
+          'text-center text-[#044347]': variant === 'gradient',
+        })}
       >
         {groupedSkill.title}
       </h2>
       <div
-        className={classNames(
-          'relative flex  flex-1 items-center justify-center',
-          {
-            'h-[450px] w-[450px]': md,
-          },
-        )}
+        className={classNames({
+          // variant: "gradient"
+          'relative flex  flex-1 items-center justify-center':
+            variant === 'gradient',
+          'h-[450px] w-[450px]': variant === 'gradient' && md,
+        })}
       >
         <div
-          className={classNames('absolute', {
-            'h-[350px] w-[350px]': !md,
-            'h-[700px] w-[700px]': md,
+          className={classNames({
+            // variant: "gradient"
+            absolute: variant === 'gradient',
+            'h-[350px] w-[350px]': variant === 'gradient' && !md,
+            'h-[700px] w-[700px]': variant === 'gradient' && md,
           })}
           style={{
-            background: gradationColor,
+            // variant: "gradient"
+            background: variant === 'gradient' ? gradationColor : undefined,
           }}
         ></div>
         <SkillList
           skills={groupedSkill.skills}
+          variant={variant}
           className={classNames('relative', {
-            'gap-16': !md,
+            // variant: "gradient"
+            relative: variant === 'gradient',
+            'gap-16': variant === 'gradient' && !md,
           })}
         />
       </div>

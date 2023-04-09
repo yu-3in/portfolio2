@@ -88,7 +88,10 @@ const Home: NextPage<HomeProps> = (props) => {
           <SectionHeading>Skills</SectionHeading>
         </Container>
         <Container size={md ? 'large' : 'medium'}>
-          <SkillGroupStack groupedSkills={props.groupedSkills} />
+          <SkillGroupStack
+            variant="gradient"
+            groupedSkills={props.groupedSkills}
+          />
           <div className="mt-36 flex justify-center md:mt-12">
             <ShowMoreButton href="/skills" />
           </div>

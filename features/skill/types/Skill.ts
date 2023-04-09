@@ -11,6 +11,7 @@ export type Skill = {
   slug: string
   image: Image
   description?: string
+  content?: string
   level: number
   category: SkillCategory
   parent?: {
