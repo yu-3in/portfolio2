@@ -82,24 +82,32 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
         <div style={{ flex: 9 }}>
           <div className="flex flex-col gap-12">
             {work.content && (
-              <WorkTitleContent title="概要">
-                <ParsedHTML html={work.content} />
-              </WorkTitleContent>
+              <div id="#概要">
+                <WorkTitleContent title="概要">
+                  <ParsedHTML html={work.content} />
+                </WorkTitleContent>
+              </div>
             )}
             {work.duration && (
-              <WorkTitleContent title="期間">
-                <ParsedHTML html={work.duration} />
-              </WorkTitleContent>
+              <div id="#期間">
+                <WorkTitleContent title="期間">
+                  <ParsedHTML html={work.duration} />
+                </WorkTitleContent>
+              </div>
             )}
             {work.role && (
-              <WorkTitleContent title="役割">
-                <ParsedHTML html={work.role} />
-              </WorkTitleContent>
+              <div id="#役割">
+                <WorkTitleContent title="役割">
+                  <ParsedHTML html={work.role} />
+                </WorkTitleContent>
+              </div>
             )}
             {work.impressions && (
-              <WorkTitleContent title="所感">
-                <ParsedHTML html={work.impressions} />
-              </WorkTitleContent>
+              <div id="#所感">
+                <WorkTitleContent title="所感">
+                  <ParsedHTML html={work.impressions} />
+                </WorkTitleContent>
+              </div>
             )}
           </div>
         </div>
@@ -107,12 +115,36 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
           <WorkTitleContent title="INDEX">
             <nav>
               <ul className="flex flex-col gap-2 [&>li]:font-bold">
-                {work.content && <li>概要</li>}
-                {work.duration && <li>期間</li>}
-                {work.role && <li>役割</li>}
-                {work.impressions && <li>所感</li>}
-                {work.skills && work.skills.length > 0 && <li>スキル</li>}
-                {(prevWork || nextWork) && <li>ほかの Works もみる</li>}
+                {work.content && (
+                  <li>
+                    <a href="#概要">概要</a>
+                  </li>
+                )}
+                {work.duration && (
+                  <li>
+                    <a href="#期間">期間</a>
+                  </li>
+                )}
+                {work.role && (
+                  <li>
+                    <a href="#役割">役割</a>
+                  </li>
+                )}
+                {work.impressions && (
+                  <li>
+                    <a href="#所感">所感</a>
+                  </li>
+                )}
+                {work.skills && work.skills.length > 0 && (
+                  <li>
+                    <a href="#スキル">スキル</a>
+                  </li>
+                )}
+                {(prevWork || nextWork) && (
+                  <li>
+                    <a href="#ほかの Works もみる">ほかの Works もみる</a>
+                  </li>
+                )}
               </ul>
             </nav>
           </WorkTitleContent>
@@ -125,25 +157,29 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
 
       {work.skills && work.skills.length > 0 && (
         <Container align="right" className="mt-12">
-          <WorkTitleContent
-            title="スキル"
-            className={classNames('flex flex-col gap-6')}
-          >
-            <SkillTags skills={work.skills} />
-            <SkillList skills={work.skills} variant="horizontal" />
-          </WorkTitleContent>
+          <div id="スキル">
+            <WorkTitleContent
+              title="スキル"
+              className={classNames('flex flex-col gap-6')}
+            >
+              <SkillTags skills={work.skills} />
+              <SkillList skills={work.skills} variant="horizontal" />
+            </WorkTitleContent>
+          </div>
         </Container>
       )}
       {(prevWork || nextWork) && (
         <Container className="mt-12">
-          <WorkTitleContent title="ほかの Works もみる">
-            <div
-              className={classNames('grid grid-cols-1 gap-8 md:grid-cols-2')}
-            >
-              {prevWork && <WorkCard work={prevWork} />}
-              {nextWork && <WorkCard work={nextWork} />}
-            </div>
-          </WorkTitleContent>
+          <div id="ほかの Works もみる">
+            <WorkTitleContent title="ほかの Works もみる">
+              <div
+                className={classNames('grid grid-cols-1 gap-8 md:grid-cols-2')}
+              >
+                {prevWork && <WorkCard work={prevWork} />}
+                {nextWork && <WorkCard work={nextWork} />}
+              </div>
+            </WorkTitleContent>
+          </div>
         </Container>
       )}
 
