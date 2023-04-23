@@ -8,7 +8,7 @@ import { ParsedHTML } from '@/components/elements/content/parseHTML'
 export type SkillItemProps = {
   skill: Skill
   className?: string
-  variant?: 'default' | 'gradient'
+  variant?: 'default' | 'gradient' | 'horizontal'
 }
 
 export const SkillItem: React.FC<SkillItemProps> = ({
@@ -23,8 +23,8 @@ export const SkillItem: React.FC<SkillItemProps> = ({
     <li
       className={classNames(
         {
-          // variant: "default"
-          'h-full': variant === 'default',
+          // variant: "default" || 'horizontal'
+          'h-full': variant === 'default' || variant === 'horizontal',
 
           // variant: "gradient"
           'flex h-full items-center justify-center': variant === 'gradient',
@@ -35,20 +35,23 @@ export const SkillItem: React.FC<SkillItemProps> = ({
       <Link
         href={`/skills/${skill.slug}`}
         className={classNames({
-          // variant: "default"
-          'flex h-full flex-col justify-between gap-2': variant === 'default',
+          // variant: "default" || "horizontal"
+          'flex h-full flex-col justify-between gap-2':
+            variant === 'default' || variant === 'horizontal',
         })}
       >
         <figure
           className={classNames({
-            //variant: "default"
-            'h-[70px]': variant === 'default',
-            'h-[130px]': variant === 'default' && md,
-            // 'min-h-full': variant === 'default',
+            //variant: "default" || 'horizontal'
+            'h-[70px]': variant === 'default' || variant === 'horizontal',
+            'h-[130px]':
+              (variant === 'default' || variant === 'horizontal') && md,
+            // 'min-h-full': variant === 'default' || variant === 'horizontal',
           })}
           style={{
-            // variant: "default"
-            flex: variant === 'default' ? 4 : undefined,
+            // variant: "default" || 'horizontal'
+            flex:
+              variant === 'default' || variant === 'horizontal' ? 4 : undefined,
           }}
         >
           <Image
@@ -59,10 +62,11 @@ export const SkillItem: React.FC<SkillItemProps> = ({
             placeholder={skill.image?.blurDataURL ? 'blur' : undefined}
             blurDataURL={skill.image?.blurDataURL}
             className={classNames({
-              //variant: "default"
-              'h-[70px]': variant === 'default',
-              'h-[130px]': variant === 'default' && md,
-              // 'min-h-full': variant === 'default',
+              //variant: "default" || 'horizontal'
+              'h-[70px]': variant === 'default' || variant === 'horizontal',
+              'h-[130px]':
+                variant === 'default' || (variant === 'horizontal' && md),
+              // 'min-h-full': variant === 'default' || variant === 'horizontal',
             })}
             style={{
               // fade in
@@ -71,24 +75,15 @@ export const SkillItem: React.FC<SkillItemProps> = ({
             sizes="10vw"
           />
         </figure>
-        {variant === 'default' && (
+        {(variant === 'default' || variant === 'horizontal') && (
           <>
             <div
-              className={classNames({
-                // variant: "default"
-                'flex items-center justify-center': variant === 'default',
-              })}
+              className={classNames('flex items-center justify-center')}
               style={{
-                // variant: "default"
-                flex: variant === 'default' ? 4 : undefined,
+                flex: 4,
               }}
             >
-              <h3
-                className={classNames({
-                  // variant: "default"
-                  'text-center text-2xl font-semibold': variant === 'default',
-                })}
-              >
+              <h3 className={classNames('text-center text-2xl font-semibold')}>
                 {skill.title}
               </h3>
             </div>
@@ -99,26 +94,27 @@ export const SkillItem: React.FC<SkillItemProps> = ({
               readOnly
               color="#0094FF"
               size={md ? 'small' : 'medium'}
-              className={classNames({
-                // variant: "default"
-                'flex justify-center': variant === 'default',
-              })}
+              className={classNames('flex justify-center')}
               style={{
-                // variant: "default"
-                flex: variant === 'default' ? 1 : undefined,
+                flex: 1,
               }}
             />
 
-            {/* <div
+            <div
               style={{
-                // variant: "default"
-                flex: variant === 'default' ? 3 : undefined,
-                // flexBasis: variant === 'default' ? '2em' : undefined,
+                flex: 3,
+                // flexBasis: '2em',
                 // overflow: 'hidden',
               }}
             >
-              <ParsedHTML html={skill?.description} />
-            </div> */}
+              <div
+                className={classNames(
+                  'h-14 overflow-y-hidden text-ellipsis text-sm',
+                )}
+              >
+                <ParsedHTML html={skill?.description} />
+              </div>
+            </div>
           </>
         )}
       </Link>

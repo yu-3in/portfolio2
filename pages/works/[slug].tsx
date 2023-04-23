@@ -2,12 +2,14 @@ import { ParsedHTML } from '@/components/elements/content/parseHTML'
 import { Container } from '@/components/layouts/container/Container'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
 import { Footer } from '@/components/layouts/footer'
+import { SkillList } from '@/features/skill/components'
 import { getAllWorkSlugs } from '@/features/work/apis/getAllWorkSlugs'
 import { getWorkBySlug } from '@/features/work/apis/getWorkBySlug'
 import { WorkCategoryList, WorkTags } from '@/features/work/components'
 import { WorkTitleContent } from '@/features/work/components/WorkTitleContent'
 import { addBlurDataURLToWork } from '@/features/work/libs/addBlurDataURLToWork'
 import { Work } from '@/features/work/types/Work'
+import classNames from 'classnames'
 import { NextPage, GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import { ParsedUrlQuery } from 'querystring'
@@ -28,7 +30,7 @@ const WorkPage: NextPage<WorkPageProps> = ({ work }) => {
       direction="to-b"
       className="relative h-full min-h-screen pt-40"
     >
-      <Container className="pb-20">
+      <Container>
         <div className="flex flex-col gap-5">
           <WorkCategoryList categories={work.categories} />
           <div className="flex flex-col gap-3">
@@ -41,6 +43,9 @@ const WorkPage: NextPage<WorkPageProps> = ({ work }) => {
             <WorkTags tags={work.tags} />
           </ul>
         </div>
+      </Container>
+      <Container>
+        {' '}
         <div className="mt-8">
           <figure>
             <Image
@@ -61,8 +66,10 @@ const WorkPage: NextPage<WorkPageProps> = ({ work }) => {
             />
           </figure>
         </div>
-        <div className="mt-16">
-          <div className="flex flex-col gap-12">
+      </Container>
+      <div className="mt-16">
+        <div className="flex flex-col gap-12">
+          <Container>
             {work.content && (
               <WorkTitleContent title="概要">
                 <ParsedHTML html={work.content} />
@@ -83,10 +90,20 @@ const WorkPage: NextPage<WorkPageProps> = ({ work }) => {
                 <ParsedHTML html={work.impressions} />
               </WorkTitleContent>
             )}
-          </div>
+          </Container>
+          <Container align="right">
+            {work.skills && work.skills.length > 0 && (
+              <WorkTitleContent title="スキル">
+                <SkillList skills={work.skills} variant="horizontal" />
+              </WorkTitleContent>
+            )}
+          </Container>
         </div>
-      </Container>
-      <Footer />
+      </div>
+
+      <div className={classNames('pt-20')}>
+        <Footer />
+      </div>
     </GradientContainer>
   )
 }
