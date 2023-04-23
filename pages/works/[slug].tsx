@@ -80,26 +80,28 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
       <div className="mt-16">
         <div className="flex flex-col gap-12">
           <Container>
-            {work.content && (
-              <WorkTitleContent title="概要">
-                <ParsedHTML html={work.content} />
-              </WorkTitleContent>
-            )}
-            {work.duration && (
-              <WorkTitleContent title="期間">
-                <ParsedHTML html={work.duration} />
-              </WorkTitleContent>
-            )}
-            {work.role && (
-              <WorkTitleContent title="役割">
-                <ParsedHTML html={work.role} />
-              </WorkTitleContent>
-            )}
-            {work.impressions && (
-              <WorkTitleContent title="所感">
-                <ParsedHTML html={work.impressions} />
-              </WorkTitleContent>
-            )}
+            <div className="flex flex-col gap-12">
+              {work.content && (
+                <WorkTitleContent title="概要">
+                  <ParsedHTML html={work.content} />
+                </WorkTitleContent>
+              )}
+              {work.duration && (
+                <WorkTitleContent title="期間">
+                  <ParsedHTML html={work.duration} />
+                </WorkTitleContent>
+              )}
+              {work.role && (
+                <WorkTitleContent title="役割">
+                  <ParsedHTML html={work.role} />
+                </WorkTitleContent>
+              )}
+              {work.impressions && (
+                <WorkTitleContent title="所感">
+                  <ParsedHTML html={work.impressions} />
+                </WorkTitleContent>
+              )}
+            </div>
           </Container>
           {work.skills && work.skills.length > 0 && (
             <Container align="right">
