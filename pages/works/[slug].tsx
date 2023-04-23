@@ -3,6 +3,8 @@ import { Container } from '@/components/layouts/container/Container'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
 import { Footer } from '@/components/layouts/footer'
 import { SkillList } from '@/features/skill/components'
+import { SkillTag } from '@/features/skill/components/SkillTag'
+import { SkillTags } from '@/features/skill/components/SkillTags'
 import { getAllWorkSlugs } from '@/features/work/apis/getAllWorkSlugs'
 import { getWorkBySlug } from '@/features/work/apis/getWorkBySlug'
 import { WorkCategoryList, WorkTags } from '@/features/work/components'
@@ -93,7 +95,11 @@ const WorkPage: NextPage<WorkPageProps> = ({ work }) => {
           </Container>
           <Container align="right">
             {work.skills && work.skills.length > 0 && (
-              <WorkTitleContent title="スキル">
+              <WorkTitleContent
+                title="スキル"
+                className={classNames('flex flex-col gap-6')}
+              >
+                <SkillTags skills={work.skills} />
                 <SkillList skills={work.skills} variant="horizontal" />
               </WorkTitleContent>
             )}
