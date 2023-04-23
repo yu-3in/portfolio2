@@ -82,28 +82,28 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
         <div style={{ flex: 9 }}>
           <div className="flex flex-col gap-12">
             {work.content && (
-              <div id="#概要">
+              <div id="概要">
                 <WorkTitleContent title="概要">
                   <ParsedHTML html={work.content} />
                 </WorkTitleContent>
               </div>
             )}
             {work.duration && (
-              <div id="#期間">
+              <div id="期間">
                 <WorkTitleContent title="期間">
                   <ParsedHTML html={work.duration} />
                 </WorkTitleContent>
               </div>
             )}
             {work.role && (
-              <div id="#役割">
+              <div id="役割">
                 <WorkTitleContent title="役割">
                   <ParsedHTML html={work.role} />
                 </WorkTitleContent>
               </div>
             )}
             {work.impressions && (
-              <div id="#所感">
+              <div id="所感">
                 <WorkTitleContent title="所感">
                   <ParsedHTML html={work.impressions} />
                 </WorkTitleContent>
