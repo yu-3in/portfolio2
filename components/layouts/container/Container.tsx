@@ -21,8 +21,8 @@ export const Container: React.FC<ContainerProps> = ({
           align === 'center' && size === 'medium',
         'w-11/12 md:w-10/12 lg:w-10/12 xl:w-9/12 2xl:w-9/12':
           align === 'center' && size === 'large',
-        'ml-0 pl-0': align === 'left',
-        'mr-0 pr-0': align === 'right',
+        'ml-0': align === 'left',
+        'mr-0': align === 'right',
         'w-[95.83%] md:w-[91.66%] lg:w-[83.33%] xl:w-[79.16%] 2xl:w-[75%]':
           align !== 'center' && size === 'medium',
         'w-[95.83%] md:w-[91.66%] lg:w-[91.66%] xl:w-[87.5%] 2xl:w-[87.5%]':
