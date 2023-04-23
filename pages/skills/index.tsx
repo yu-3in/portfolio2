@@ -9,12 +9,12 @@ import { getGroupedSkills } from '@/features/skill/libs/getGroupedSkills'
 import { GroupedSkill, Skill } from '@/features/skill/types'
 import { NextPage, GetStaticProps } from 'next'
 
-export type WorksPageProps = {
+export type SkillsPageProps = {
   skills: Skill[] | null
   groupedSkills: GroupedSkill[] | null
 }
 
-const WorksPage: NextPage<WorksPageProps> = ({ skills, groupedSkills }) => {
+const SkillsPage: NextPage<SkillsPageProps> = ({ skills, groupedSkills }) => {
   return (
     <GradientContainer
       fromColor="rgba(190, 255, 250, 0.51)"
@@ -31,9 +31,9 @@ const WorksPage: NextPage<WorksPageProps> = ({ skills, groupedSkills }) => {
   )
 }
 
-export default WorksPage
+export default SkillsPage
 
-export const getStaticProps: GetStaticProps<WorksPageProps> = async () => {
+export const getStaticProps: GetStaticProps<SkillsPageProps> = async () => {
   // skills
   let skills = await getSkills()
   // Add blurDataURL
