@@ -17,23 +17,27 @@ export type WorkCardProps = {
 export const WorkCard: React.FC<WorkCardProps> = ({ work }) => {
   const [favoriteCountStatus, setFavoriteCountStatus] = useState('increment')
 
-  const handleClickFavorite = useCallback(async () => {
-    let count = work.favoriteCount ?? 0
-    switch (favoriteCountStatus) {
-      case 'increment':
-        setFavoriteCountStatus('decrement')
-        count++
-        break
-      case 'decrement':
-        setFavoriteCountStatus('increment')
-        break
-    }
+  const handleClickFavorite = useCallback(
+    async (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault()
+      let count = work.favoriteCount ?? 0
+      switch (favoriteCountStatus) {
+        case 'increment':
+          setFavoriteCountStatus('decrement')
+          count++
+          break
+        case 'decrement':
+          setFavoriteCountStatus('increment')
+          break
+      }
 
-    await axios.put(`/api/works/updateFavoriteCount`, {
-      id: work.id,
-      count: count,
-    })
-  }, [favoriteCountStatus])
+      await axios.put(`/api/works/updateFavoriteCount`, {
+        id: work.id,
+        count: count,
+      })
+    },
+    [favoriteCountStatus],
+  )
 
   return (
     <Link href={`/works/${work.slug}`}>
