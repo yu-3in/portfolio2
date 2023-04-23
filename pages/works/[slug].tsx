@@ -6,8 +6,14 @@ import { SkillList } from '@/features/skill/components'
 import { SkillTag } from '@/features/skill/components/SkillTag'
 import { SkillTags } from '@/features/skill/components/SkillTags'
 import { getAllWorkSlugs } from '@/features/work/apis/getAllWorkSlugs'
+import { getNextWork } from '@/features/work/apis/getNextWork'
+import { getPrevWork } from '@/features/work/apis/getPrevWork'
 import { getWorkBySlug } from '@/features/work/apis/getWorkBySlug'
-import { WorkCategoryList, WorkTags } from '@/features/work/components'
+import {
+  WorkCard,
+  WorkCategoryList,
+  WorkTags,
+} from '@/features/work/components'
 import { WorkTitleContent } from '@/features/work/components/WorkTitleContent'
 import { addBlurDataURLToWork } from '@/features/work/libs/addBlurDataURLToWork'
 import { Work } from '@/features/work/types/Work'
@@ -22,9 +28,11 @@ interface IParams extends ParsedUrlQuery {
 
 export type WorkPageProps = {
   work: Work
+  prevWork: Work | null
+  nextWork: Work | null
 }
 
-const WorkPage: NextPage<WorkPageProps> = ({ work }) => {
+const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
   return (
     <GradientContainer
       fromColor="rgba(190, 255, 250, 0.51)"
@@ -93,8 +101,8 @@ const WorkPage: NextPage<WorkPageProps> = ({ work }) => {
               </WorkTitleContent>
             )}
           </Container>
-          <Container align="right">
-            {work.skills && work.skills.length > 0 && (
+          {work.skills && work.skills.length > 0 && (
+            <Container align="right">
               <WorkTitleContent
                 title="スキル"
                 className={classNames('flex flex-col gap-6')}
@@ -102,8 +110,22 @@ const WorkPage: NextPage<WorkPageProps> = ({ work }) => {
                 <SkillTags skills={work.skills} />
                 <SkillList skills={work.skills} variant="horizontal" />
               </WorkTitleContent>
-            )}
-          </Container>
+            </Container>
+          )}
+          {(prevWork || nextWork) && (
+            <Container>
+              <WorkTitleContent title="ほかの Works もみる">
+                <div
+                  className={classNames(
+                    'grid grid-cols-1 gap-8 md:grid-cols-2',
+                  )}
+                >
+                  {prevWork && <WorkCard work={prevWork} />}
+                  {nextWork && <WorkCard work={nextWork} />}
+                </div>
+              </WorkTitleContent>
+            </Container>
+          )}
         </div>
       </div>
 
@@ -131,7 +153,6 @@ export const getStaticProps: GetStaticProps<WorkPageProps, IParams> = async ({
 }) => {
   const work =
     params?.slug != undefined ? await getWorkBySlug(params?.slug) : undefined
-  // TODO: prev, next works
 
   if (work == null) {
     return {
@@ -139,10 +160,23 @@ export const getStaticProps: GetStaticProps<WorkPageProps, IParams> = async ({
     }
   }
 
+  const prevWork = await getPrevWork(work)
+  const nextWork = await getNextWork(work)
+
   // Add blurDataURL
   const workAddedBlurDataURL = (await addBlurDataURLToWork([work]))[0]
+  const prevWorkAddedBlurDataURL = prevWork
+    ? (await addBlurDataURLToWork([prevWork]))[0]
+    : undefined
+  const nextWorkAddedBlurDataURL = nextWork
+    ? (await addBlurDataURLToWork([nextWork]))[0]
+    : undefined
 
   return {
-    props: { work: workAddedBlurDataURL },
+    props: {
+      work: workAddedBlurDataURL,
+      prevWork: prevWorkAddedBlurDataURL ?? null,
+      nextWork: nextWorkAddedBlurDataURL ?? null,
+    },
   }
 }
