@@ -9,36 +9,13 @@ import { useCallback, useState } from 'react'
 import { Work } from '../types/Work'
 import { WorkCategoryList } from './WorkCategoryList'
 import { WorkTags } from './WorkTags'
+import { FavoriteButton } from '@/components/elements/button/FavoriteButton'
 
 export type WorkCardProps = {
   work: Work
 }
 
 export const WorkCard: React.FC<WorkCardProps> = ({ work }) => {
-  const [favoriteCountStatus, setFavoriteCountStatus] = useState('increment')
-
-  const handleClickFavorite = useCallback(
-    async (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault()
-      let count = work.favoriteCount ?? 0
-      switch (favoriteCountStatus) {
-        case 'increment':
-          setFavoriteCountStatus('decrement')
-          count++
-          break
-        case 'decrement':
-          setFavoriteCountStatus('increment')
-          break
-      }
-
-      await axios.put(`/api/works/updateFavoriteCount`, {
-        id: work.id,
-        count: count,
-      })
-    },
-    [favoriteCountStatus],
-  )
-
   return (
     <Link href={`/works/${work.slug}`}>
       <div className="overflow-hidden rounded-2xl bg-white shadow-md">
@@ -64,13 +41,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({ work }) => {
           </figure>
           <div className="absolute top-0 h-full w-full bg-gradient-to-b from-transparent to-white"></div>
           <div className="absolute bottom-0 right-2">
-            <IconButton onClick={handleClickFavorite}>
-              {favoriteCountStatus === 'increment' ? (
-                <FavoriteBorder fontSize="large" style={{ color: '#FE6161' }} />
-              ) : (
-                <Favorite fontSize="large" style={{ color: '#FE6161' }} />
-              )}
-            </IconButton>
+            <FavoriteButton work={work} />
           </div>
         </div>
         <div className="flex flex-col gap-2 gap-y-4 p-5">
