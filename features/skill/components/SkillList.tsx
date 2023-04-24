@@ -1,6 +1,6 @@
 import { useMediaQuery, useTheme } from '@mui/material'
 import classNames from 'classnames'
-import { Fragment, useCallback, useMemo } from 'react'
+import { Fragment, useMemo } from 'react'
 import { Skill } from '../types'
 import { SkillItem } from './SkillItem'
 
@@ -23,11 +23,13 @@ export const SkillList: React.FC<SkillListProps> = ({
   const lg = useMediaQuery(theme.breakpoints.up('lg'))
 
   const gridTemplateColumns = useMemo(() => {
-    if (!md) return undefined
-
     switch (variant) {
       case 'gradient':
-        return 'repeat(auto-fit, minmax(calc(60% / 5), calc(60% / 3)))'
+        if (md) {
+          return 'repeat(auto-fit, minmax(calc(60% / 5), calc(60% / 3)))'
+        } else {
+          return 'repeat(auto-fit, minmax(calc(50% / 5), calc(50% / 3)))'
+        }
       case 'default':
         return 'repeat(auto-fit, minmax(calc(50% / 5), calc(50% / 3)))'
       default:
@@ -58,7 +60,6 @@ export const SkillList: React.FC<SkillListProps> = ({
         className,
       )}
       style={{
-        // variant "gradient"
         gridTemplateColumns: gridTemplateColumns,
       }}
     >
