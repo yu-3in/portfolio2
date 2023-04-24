@@ -4,7 +4,6 @@ import { Container } from '@/components/layouts/container/Container'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
 import { Footer } from '@/components/layouts/footer'
 import { SkillList } from '@/features/skill/components'
-import { SkillTag } from '@/features/skill/components/SkillTag'
 import { SkillTags } from '@/features/skill/components/SkillTags'
 import { getAllWorkSlugs } from '@/features/work/apis/getAllWorkSlugs'
 import { getNextWork } from '@/features/work/apis/getNextWork'
@@ -22,6 +21,8 @@ import classNames from 'classnames'
 import { NextPage, GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import { ParsedUrlQuery } from 'querystring'
+import TwitterIcon from '@mui/icons-material/Twitter'
+import { htmlToText } from '@/features/profile/libs/htmlToText'
 
 interface IParams extends ParsedUrlQuery {
   slug: string
@@ -111,7 +112,7 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
             )}
           </div>
         </div>
-        <div style={{ flex: 3 }}>
+        <div className="flex flex-col gap-4" style={{ flex: 3 }}>
           <WorkTitleContent title="INDEX">
             <nav>
               <ul className="flex flex-col gap-2 [&>li]:font-bold">
@@ -148,10 +149,27 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
               </ul>
             </nav>
           </WorkTitleContent>
-          <div className="mt-4 flex items-center gap-2">
-            <div className="font-bold">スキ！する</div>
+          <div className="flex items-center gap-2">
+            <div className="font-extrabold">スキ！する</div>
             <FavoriteButton work={work} count="right" />
           </div>
+          <WorkTitleContent
+            title="シェアする"
+            titleSize="sm"
+            className="grid w-full grid-cols-3 gap-3"
+          >
+            <div>
+              <a
+                href={`https://twitter.com/share?url=${
+                  window.location.href
+                }&text=【${work.title}】%0D%0A${htmlToText(work.description)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <TwitterIcon fontSize="large" className="text-[#1DA1F2]" />
+              </a>
+            </div>
+          </WorkTitleContent>
         </div>
       </Container>
 
