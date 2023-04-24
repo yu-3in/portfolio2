@@ -1,11 +1,6 @@
 import { ParsedHTML } from '@/components/elements/content/parseHTML'
-import { CHIP_STYLE } from '@/constants/chip'
-import { Favorite, FavoriteBorder } from '@mui/icons-material'
-import { Chip, IconButton } from '@mui/material'
-import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useCallback, useState } from 'react'
 import { Work } from '../types/Work'
 import { WorkCategoryList } from './WorkCategoryList'
 import { WorkTags } from './WorkTags'
@@ -41,7 +36,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({ work }) => {
           </figure>
           <div className="absolute top-0 h-full w-full bg-gradient-to-b from-transparent to-white"></div>
           <div className="absolute bottom-0 right-2">
-            <FavoriteButton work={work} />
+            <FavoriteButton work={work} count="bottom" />
           </div>
         </div>
         <div className="flex flex-col gap-2 gap-y-4 p-5">

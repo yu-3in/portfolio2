@@ -150,7 +150,7 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
           </WorkTitleContent>
           <div className="mt-4 flex items-center gap-2">
             <div className="font-bold">スキ！する</div>
-            <FavoriteButton work={work} />
+            <FavoriteButton work={work} count="right" />
           </div>
         </div>
       </Container>
