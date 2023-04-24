@@ -24,6 +24,7 @@ import { ParsedUrlQuery } from 'querystring'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import { htmlToText } from '@/features/profile/libs/htmlToText'
 import { useEffect, useState } from 'react'
+import { useMediaQuery, useTheme } from '@mui/material'
 
 interface IParams extends ParsedUrlQuery {
   slug: string
@@ -36,6 +37,8 @@ export type WorkPageProps = {
 }
 
 const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
+  const theme = useTheme()
+  const md = useMediaQuery(theme.breakpoints.up('md'))
   // NOTE: windowのReferenceErrorを抑止するためにuseEffect内でwindowを使用
   const [url, setUrl] = useState('')
   useEffect(() => {
@@ -119,65 +122,67 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
             )}
           </div>
         </div>
-        <div className="flex flex-col gap-4" style={{ flex: 3 }}>
-          <WorkTitleContent title="INDEX">
-            <nav>
-              <ul className="flex flex-col gap-2 [&>li]:font-bold">
-                {work.content && (
-                  <li>
-                    <a href="#概要">概要</a>
-                  </li>
-                )}
-                {work.duration && (
-                  <li>
-                    <a href="#期間">期間</a>
-                  </li>
-                )}
-                {work.role && (
-                  <li>
-                    <a href="#役割">役割</a>
-                  </li>
-                )}
-                {work.impressions && (
-                  <li>
-                    <a href="#所感">所感</a>
-                  </li>
-                )}
-                {work.skills && work.skills.length > 0 && (
-                  <li>
-                    <a href="#スキル">スキル</a>
-                  </li>
-                )}
-                {(prevWork || nextWork) && (
-                  <li>
-                    <a href="#ほかの Works もみる">ほかの Works もみる</a>
-                  </li>
-                )}
-              </ul>
-            </nav>
-          </WorkTitleContent>
-          <div className="flex items-center gap-2">
-            <div className="font-extrabold">スキ！する</div>
-            <FavoriteButton work={work} count="right" />
-          </div>
-          <WorkTitleContent
-            title="シェアする"
-            titleSize="sm"
-            className="grid w-full grid-cols-3 gap-3"
-          >
-            <div>
-              <a
-                href={`https://twitter.com/share?url=${url}&text=【${
-                  work.title
-                }】%0D%0A${htmlToText(work.description)}%0D%0A%0D%0A`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <TwitterIcon fontSize="large" className="text-[#1DA1F2]" />
-              </a>
+        {md && (
+          <div className="flex flex-col gap-4" style={{ flex: 3 }}>
+            <WorkTitleContent title="INDEX">
+              <nav>
+                <ul className="flex flex-col gap-2 [&>li]:font-bold">
+                  {work.content && (
+                    <li>
+                      <a href="#概要">概要</a>
+                    </li>
+                  )}
+                  {work.duration && (
+                    <li>
+                      <a href="#期間">期間</a>
+                    </li>
+                  )}
+                  {work.role && (
+                    <li>
+                      <a href="#役割">役割</a>
+                    </li>
+                  )}
+                  {work.impressions && (
+                    <li>
+                      <a href="#所感">所感</a>
+                    </li>
+                  )}
+                  {work.skills && work.skills.length > 0 && (
+                    <li>
+                      <a href="#スキル">スキル</a>
+                    </li>
+                  )}
+                  {(prevWork || nextWork) && (
+                    <li>
+                      <a href="#ほかの Works もみる">ほかの Works もみる</a>
+                    </li>
+                  )}
+                </ul>
+              </nav>
+            </WorkTitleContent>
+            <div className="flex items-center gap-2">
+              <div className="font-extrabold">スキ！する</div>
+              <FavoriteButton work={work} count="right" />
             </div>
-          </WorkTitleContent>
-        </div>
+            <WorkTitleContent
+              title="シェアする"
+              titleSize="sm"
+              className="grid w-full grid-cols-3 gap-3"
+            >
+              <div>
+                <a
+                  href={`https://twitter.com/share?url=${url}&text=【${
+                    work.title
+                  }】%0D%0A${htmlToText(work.description)}%0D%0A%0D%0A`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <TwitterIcon fontSize="large" className="text-[#1DA1F2]" />
+                </a>
+              </div>
+            </WorkTitleContent>
+          </div>
+        )}
       </Container>
 
       {work.skills && work.skills.length > 0 && (
