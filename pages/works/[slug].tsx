@@ -23,6 +23,7 @@ import Image from 'next/image'
 import { ParsedUrlQuery } from 'querystring'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import { htmlToText } from '@/features/profile/libs/htmlToText'
+import { useEffect, useState } from 'react'
 
 interface IParams extends ParsedUrlQuery {
   slug: string
@@ -35,6 +36,12 @@ export type WorkPageProps = {
 }
 
 const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
+  // NOTE: windowのReferenceErrorを抑止するためにuseEffect内でwindowを使用
+  const [url, setUrl] = useState('')
+  useEffect(() => {
+    setUrl(window.location.href)
+  }, [])
+
   return (
     <GradientContainer
       fromColor="rgba(190, 255, 250, 0.51)"
@@ -160,9 +167,9 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
           >
             <div>
               <a
-                href={`https://twitter.com/share?url=${
-                  window.location.href
-                }&text=【${work.title}】%0D%0A${htmlToText(work.description)}`}
+                href={`https://twitter.com/share?url=${url}&text=【${
+                  work.title
+                }】%0D%0A${htmlToText(work.description)}%0D%0A%0D%0A`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
