@@ -40,9 +40,9 @@ export const WorkCard: React.FC<WorkCardProps> = ({ work }) => {
           </div>
         </div>
         <div className="flex flex-col gap-2 gap-y-4 p-5">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center justify-between gap-4">
             <h3 className="text-3xl font-medium">{work.title}</h3>
-            <ul className="flex list-none gap-2 overflow-x-scroll">
+            <ul className="flex list-none gap-2">
               <WorkCategoryList categories={work.categories} size="small" />
             </ul>
           </div>
