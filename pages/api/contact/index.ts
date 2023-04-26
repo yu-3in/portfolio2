@@ -1,10 +1,7 @@
+import { EmailTemplate } from '@/components/layouts/email/EmailTemplate'
+import { render } from '@react-email/render'
 import Joi from 'joi'
 import { NextApiRequest, NextApiResponse } from 'next'
-
-// works/1/updateFavoriteCount
-// {
-//   count: 1
-// }
 
 export default async function handler(
   req: NextApiRequest,
@@ -26,15 +23,14 @@ export default async function handler(
       res.status(422).json({ message: error.details[0].message })
     } else {
       // バリデーションが通過した場合は、処理を続ける
-      // メール送信処理
+      // メール送信処理（SendGrid）
       const sgMail = require('@sendgrid/mail')
-      console.log(process.env.SENDGRID_API_KEY)
       sgMail.setApiKey(process.env.SENDGRID_API_KEY)
       const msg = {
         to: process.env.EMAIL_ADDRESS,
         from: 'yumoto@miravy.com',
         subject: `【ポートフォリオサイト】お問い合わせ（${req.body.name}さん）`,
-        text: req.body.message,
+        html: render(EmailTemplate(req)),
       }
 
       try {
