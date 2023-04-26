@@ -10,14 +10,23 @@ import classNames from 'classnames'
 export type WorkCardProps = {
   work: Work
   className?: string
+  direction?: 'row' | 'column'
 }
 
-export const WorkCard: React.FC<WorkCardProps> = ({ work, className }) => {
+export const WorkCard: React.FC<WorkCardProps> = ({
+  work,
+  direction = 'column',
+  className,
+}) => {
   return (
     <Link
       href={`/works/${work.slug}`}
       className={classNames(
-        'overflow-hidden rounded-2xl bg-white shadow-md',
+        'flex overflow-hidden rounded-2xl bg-white shadow-md',
+        {
+          'flex-col': direction === 'column',
+          'flex-row': direction === 'column',
+        },
         className,
       )}
     >
@@ -41,9 +50,25 @@ export const WorkCard: React.FC<WorkCardProps> = ({ work, className }) => {
             sizes="50vw"
           />
         </figure>
-        <div className="absolute top-0 h-full w-full bg-gradient-to-b from-transparent to-white"></div>
-        <div className="absolute bottom-0 right-2">
-          <FavoriteButton work={work} count="bottom" />
+        <div
+          className={classNames(
+            'absolute top-0 h-full w-full from-transparent to-white',
+            {
+              'bg-gradient-to-b': direction === 'column',
+              'bg-gradient-to-r': direction === 'row',
+            },
+          )}
+        ></div>
+        <div
+          className={classNames('absolute bottom-0', {
+            'right-4': direction === 'column',
+            'right-2': direction === 'row',
+          })}
+        >
+          <FavoriteButton
+            work={work}
+            count={direction === 'row' ? 'right' : 'bottom'}
+          />
         </div>
       </div>
       <div className="grid-template-rows-[1fr_1fr_auto] grid gap-2 gap-y-4 p-5">

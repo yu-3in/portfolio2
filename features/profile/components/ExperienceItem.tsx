@@ -7,7 +7,13 @@ import SchoolIcon from '@mui/icons-material/School'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import LinkIcon from '@mui/icons-material/Link'
-import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material'
 import { WorkCard } from '@/features/work/components'
 
 export type ExperienceItemProps = { experience: Experience }
@@ -17,6 +23,8 @@ const imageSize = '4em'
 export const ExperienceItem: React.FC<ExperienceItemProps> = ({
   experience,
 }) => {
+  const theme = useTheme()
+  const md = useMediaQuery(theme.breakpoints.up('md'))
   const [isAccordionEnabled, setIsAccordionEnabled] = useState<boolean>(
     Boolean(experience.description) ||
       Boolean(experience.work) ||
@@ -121,9 +129,9 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
                     </a>
                   </div>
                 )}
-                {experience.work && (
+                {experience.work && md && (
                   <div>
-                    <WorkCard work={experience.work} />
+                    <WorkCard work={experience.work} direction="row" />
                   </div>
                 )}
               </div>
