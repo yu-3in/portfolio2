@@ -5,16 +5,21 @@ import { Work } from '../types/Work'
 import { WorkCategoryList } from './WorkCategoryList'
 import { WorkTags } from './WorkTags'
 import { FavoriteButton } from '@/components/elements/button/FavoriteButton'
+import classNames from 'classnames'
 
 export type WorkCardProps = {
   work: Work
+  className?: string
 }
 
-export const WorkCard: React.FC<WorkCardProps> = ({ work }) => {
+export const WorkCard: React.FC<WorkCardProps> = ({ work, className }) => {
   return (
     <Link
       href={`/works/${work.slug}`}
-      className="block overflow-hidden rounded-2xl bg-white shadow-md"
+      className={classNames(
+        'overflow-hidden rounded-2xl bg-white shadow-md',
+        className,
+      )}
     >
       <div className="relative">
         <figure>
