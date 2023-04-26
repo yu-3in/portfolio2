@@ -26,8 +26,26 @@ export default async function handler(
       res.status(422).json({ message: error.details[0].message })
     } else {
       // バリデーションが通過した場合は、処理を続ける
-      // TODO: Send Mail program
-      return res.status(200).json({ message: { message: 'Send Mail' } })
+      // メール送信処理
+      const sgMail = require('@sendgrid/mail')
+      console.log(process.env.SENDGRID_API_KEY)
+      sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+      const msg = {
+        to: process.env.EMAIL_ADDRESS,
+        from: 'yumoto@miravy.com',
+        subject: `【ポートフォリオサイト】お問い合わせ（${req.body.name}さん）`,
+        text: req.body.message,
+      }
+
+      try {
+        await sgMail.send(msg)
+        return res.status(200).json({ message: { message: 'Send Mail' } })
+      } catch (error: unknown) {
+        console.error(error)
+        if (error instanceof Error) {
+          return res.status(404).json({ message: { message: error.message } })
+        }
+      }
     }
   }
 

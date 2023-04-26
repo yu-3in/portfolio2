@@ -67,8 +67,6 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
         .catch((error) => {
           setStatus('error')
         })
-
-      console.log(status)
     },
     [],
   )
