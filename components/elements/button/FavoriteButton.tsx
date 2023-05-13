@@ -14,13 +14,15 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = ({
   work,
   count,
 }) => {
-  const [favoriteCount, setFavoriteCount] = useState(work.favoriteCount)
+  const [favoriteCount, setFavoriteCount] = useState<number>(
+    work.favoriteCount ?? 0,
+  )
   const [favoriteCountStatus, setFavoriteCountStatus] = useState('increment')
 
   const handleClickFavorite = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault()
-      let count = work.favoriteCount ?? 0
+      let count: number = work.favoriteCount ?? 0
       switch (favoriteCountStatus) {
         case 'increment':
           setFavoriteCount(favoriteCount ? favoriteCount + 1 : 1)
@@ -55,7 +57,7 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = ({
           <Favorite fontSize="large" style={{ color: '#FE6161' }} />
         )}
       </IconButton>
-      {count !== undefined && (
+      {
         <div
           className={classNames('text-[#FE6161]', {
             '-mt-3': count === 'bottom',
@@ -64,7 +66,7 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = ({
         >
           {favoriteCount}
         </div>
-      )}
+      }
     </div>
   )
 }
