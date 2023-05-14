@@ -12,6 +12,7 @@ export type Work = {
   title: string
   slug: string
   description: string
+  url?: string
   content?: string
   categories: WorkCategory[]
   tags: WorkTag[]

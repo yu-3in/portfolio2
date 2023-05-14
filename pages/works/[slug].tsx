@@ -25,6 +25,7 @@ import TwitterIcon from '@mui/icons-material/Twitter'
 import { htmlToText } from '@/features/profile/libs/htmlToText'
 import { useEffect, useState } from 'react'
 import { useMediaQuery, useTheme } from '@mui/material'
+import LinkIcon from '@mui/icons-material/Link'
 
 interface IParams extends ParsedUrlQuery {
   slug: string
@@ -64,6 +65,17 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
           <ul className="flex list-none flex-wrap gap-4">
             <WorkTags tags={work.tags} />
           </ul>
+          <div className="flex items-center gap-2 text-gray-700">
+            <LinkIcon />
+            <a
+              href={work.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              {work.url}
+            </a>
+          </div>
         </div>
       </Container>
       <Container>
