@@ -42,7 +42,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
             style={{
               // layout: responsive
               width: '100%',
-              height: '250px',
+              height: direction === 'column' ? '250px' : '320px',
               // fade in
               transition: '0.2s',
               objectFit: 'cover',

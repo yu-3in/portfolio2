@@ -120,10 +120,12 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
             </div>
           </AccordionSummary>
 
-          {Boolean(experience.description) && (
+          {(Boolean(experience?.content) ||
+            Boolean(experience.work) ||
+            Boolean(experience.url)) && (
             <AccordionDetails>
               <div className="flex flex-col gap-4">
-                <div>{experience.description}</div>
+                <div>{experience.content}</div>
                 {experience.url && (
                   <div className="flex items-center gap-2">
                     <LinkIcon />

@@ -11,6 +11,7 @@ export type Experience = {
   startDate: string
   endDate?: string
   description?: string
+  content?: string
   highlight: boolean
   defaultExpanded: boolean
   work?: Work
