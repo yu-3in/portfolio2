@@ -43,6 +43,12 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
     () => formatDate(new Date(experience.startDate), 'YYYY/MM'),
     [experience.startDate],
   )
+  const formattedEndDate = useMemo(
+    () =>
+      experience?.endDate &&
+      formatDate(new Date(experience.endDate), 'YYYY/MM'),
+    [experience.endDate],
+  )
 
   return (
     <li>
@@ -92,6 +98,8 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
             <div className="flex w-full items-center justify-between gap-4">
               <div>
                 <time dateTime={formattedStartDate}>{formattedStartDate}</time>
+                <span className="mx-1 inline-block">~</span>
+                <time dateTime={formattedEndDate}>{formattedEndDate}</time>
                 <h3 className="text-xl font-bold">{experience.title}</h3>
                 <div className="text-sm text-gray-500">
                   {experience.subTitle}
