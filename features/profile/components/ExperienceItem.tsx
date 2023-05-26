@@ -77,8 +77,8 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
             <div
               className="flex items-center justify-center rounded-full bg-sky-300"
               style={{
-                width: imageSize,
-                height: imageSize,
+                width: md ? '4em' : '3em',
+                height: md ? '4em' : '3em',
               }}
             >
               <SchoolIcon fontSize="large" />
