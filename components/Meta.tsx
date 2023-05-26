@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import siteImg from '@/images/ogp.jpg'
+import siteImg from '@/images/ogp.png'
 import { SITE_META } from '@/constants/meta'
 
 interface Props {
