@@ -29,11 +29,14 @@ export type SkillPageProps = {
 }
 
 const SkillPage: React.FC<SkillPageProps> = ({ skill, works }) => {
-  const pageDesc = useMemo(() => {
-    const description = parse(skill.description ?? '')
-    // @ts-ignore
-    // NOTE: html-react-parserの返り値Elementから文字列を取得するために、強引にprops.childrenを参照している
-    return typeof description === 'object' ? description.props.children : ''
+  const pageDesc: string = useMemo(() => {
+    if (skill.description) {
+      const description = parse(skill.description)
+      // @ts-ignore
+      // NOTE: html-react-parserの返り値Elementから文字列を取得するために、強引にprops.childrenを参照している
+      return typeof description === 'object' ? description.props.children : ''
+    }
+    return ''
   }, [])
 
   return (
