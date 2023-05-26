@@ -18,11 +18,23 @@ module.exports = {
   },
   content: [],
   theme: {
-    // extend: {
-    //   colors: {
-    //     sky: "#00BFFF"
-    //   }
-    // },
+    extend: {
+      keyframes: {
+        slideIn: {
+          "0%": {
+            opacity: 0,
+            transform: "translateY(30px)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translateY(0)",
+          },
+        },
+      },
+      animation: {
+        slideIn: "slideIn 0.5s ease-in forwards",
+      },
+    }
   },
   plugins: [],
   important: true,
