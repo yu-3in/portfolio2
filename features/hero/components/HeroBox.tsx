@@ -8,15 +8,16 @@ export type HeroBoxProps = { profile: Profile | null }
 
 export const HeroBox: React.FC<HeroBoxProps> = ({ profile }) => {
   return (
-    <div
-      className="bg-gray-50/30 py-14 px-24"
-      style={{
-        // 歪な円形
-        borderRadius: '86% 68% 100% 66% / 65% 75% 83% 80%',
-        minWidth: MIN_WIDTH,
-      }}
-    >
-      <div className="flex flex-col gap-2 text-center">
+    <div className="relative -mx-4 py-14 px-24">
+      <div
+        className="absolute top-0 left-0 right-0 h-full w-[150%] max-w-[400px] bg-gray-50/30 py-14 px-24 sm:w-full sm:max-w-full"
+        style={{
+          // 歪な円形
+          borderRadius: '86% 68% 100% 66% / 65% 75% 83% 80%',
+          minWidth: MIN_WIDTH,
+        }}
+      ></div>
+      <div className="relative flex flex-col gap-2 text-center">
         <div
           className="bg-gradient-to-r from-[#09CCAB] to-[#D81BDC] bg-clip-text text-[24px] font-bold text-transparent"
           style={{ clipPath: 'inset(1px)' }}
