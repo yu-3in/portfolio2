@@ -65,7 +65,7 @@ export const ProfileBox: React.FC<ProfileBoxProps> = ({
             }}
           ></div>
         </div>
-        <Container className="mt-4">
+        <Container className="mt-4 px-4">
           <div className="flex flex-col gap-5">
             <h2 className="flex flex-wrap justify-center gap-x-[.75em] text-center text-7xl md:flex-nowrap">
               <span className="inline-block">{profile?.firstName}</span>
