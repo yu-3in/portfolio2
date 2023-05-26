@@ -172,9 +172,9 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
                 </ul>
               </nav>
             </WorkTitleContent>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-6">
               <div className="font-extrabold">スキ！する</div>
-              <FavoriteButton work={work} count="right" />
+              <FavoriteButton work={work} count="bottom" />
             </div>
             <WorkTitleContent
               title="シェアする"
