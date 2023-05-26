@@ -16,6 +16,7 @@ export const WorkList: React.FC<WorkListProps> = ({ works }) => {
               className={classNames(
                 'min-w-[min(100%,400px)] max-w-[310px] flex-none overflow-hidden rounded-2xl bg-white shadow-md  sm:max-w-[380px] sm:flex-1 md:min-w-[47%]',
               )}
+              fadeIn={true}
             />
           </Fragment>
         ))

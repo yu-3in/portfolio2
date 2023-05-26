@@ -6,11 +6,14 @@ import { WorkCategoryList } from './WorkCategoryList'
 import { WorkTags } from './WorkTags'
 import { FavoriteButton } from '@/components/elements/button/FavoriteButton'
 import classNames from 'classnames'
+import { useInView } from 'react-intersection-observer'
+import { fadeInClassName, fadeInOption } from '@/constants/animation'
 
 export type WorkCardProps = {
   work: Work
   className?: string
   direction?: 'row' | 'column'
+  fadeIn?: boolean
 }
 
 export const WorkCard: React.FC<WorkCardProps> = ({
@@ -18,6 +21,8 @@ export const WorkCard: React.FC<WorkCardProps> = ({
   direction = 'column',
   className,
 }) => {
+  const { ref, inView } = useInView(fadeInOption)
+
   return (
     <Link
       href={`/works/${work.slug}`}
@@ -26,9 +31,12 @@ export const WorkCard: React.FC<WorkCardProps> = ({
         {
           'flex-col': direction === 'column',
           'flex-row': direction === 'column',
+          ...fadeInClassName(inView),
         },
+
         className,
       )}
+      ref={ref}
     >
       <div className="relative overflow-hidden">
         <figure>
