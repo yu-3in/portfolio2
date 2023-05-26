@@ -18,8 +18,6 @@ import { WorkCard } from '@/features/work/components'
 
 export type ExperienceItemProps = { experience: Experience }
 
-const imageSize = '4em'
-
 export const ExperienceItem: React.FC<ExperienceItemProps> = ({
   experience,
 }) => {
@@ -66,8 +64,8 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
                 className="rounded-full"
                 style={{
                   // layout: responsive
-                  width: imageSize,
-                  height: imageSize,
+                  width: md ? '4em' : '3em',
+                  height: md ? '4em' : '3em',
                   // fade in
                   transition: '0.2s',
                   objectFit: 'cover',
