@@ -23,9 +23,11 @@ import Image from 'next/image'
 import { ParsedUrlQuery } from 'querystring'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import { htmlToText } from '@/features/profile/libs/htmlToText'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useMediaQuery, useTheme } from '@mui/material'
 import LinkIcon from '@mui/icons-material/Link'
+import Meta from '@/components/Meta'
+import parse from 'html-react-parser'
 
 interface IParams extends ParsedUrlQuery {
   slug: string
@@ -46,6 +48,13 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
     setUrl(window.location.href)
   }, [])
 
+  const pageDesc = useMemo(() => {
+    const description = parse(work.description)
+    // @ts-ignore
+    // NOTE: html-react-parserの返り値Elementから文字列を取得するために、強引にprops.childrenを参照している
+    return typeof description === 'object' ? description.props.children : ''
+  }, [])
+
   return (
     <GradientContainer
       fromColor="rgba(190, 255, 250, 0.51)"
@@ -53,6 +62,13 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
       direction="to-b"
       className="relative h-full min-h-screen pt-40"
     >
+      <Meta
+        pageTitle={work.title}
+        pageDesc={pageDesc}
+        pageImg={work.coverImage?.url}
+        pageImgW={parseInt(work.coverImage?.width ?? '')}
+        pageImgH={parseInt(work.coverImage?.height ?? '')}
+      />
       <Container>
         <div className="flex flex-col gap-5">
           <WorkCategoryList categories={work.categories} />
