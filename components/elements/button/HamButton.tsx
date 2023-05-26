@@ -13,7 +13,7 @@ export const HamButton: React.FC<HamButtonProps> = ({
 }) => {
   return (
     <button
-      className={classNames('relative block h-[36px] w-[42px]', className)}
+      className={classNames('relative block h-[28px] w-[36px]', className)}
       onClick={onClick}
     >
       <div
@@ -29,7 +29,6 @@ export const HamButton: React.FC<HamButtonProps> = ({
       <div
         className={classNames('absolute h-[2px] w-[80%] bg-gray-400', {
           'top-[16px] rotate-[180deg]': isOpen,
-          'top-4': !isOpen,
         })}
         style={{
           transition: 'transform 0.8s ease, -webkit-transform 0.8s ease',
@@ -37,9 +36,9 @@ export const HamButton: React.FC<HamButtonProps> = ({
       ></div>
       <div
         className={classNames('absolute h-[2px] bg-gray-400', {
-          'bottom-[12px] left-[4px] w-[15px] -translate-x-[5px] -rotate-[135deg]':
+          'bottom-1 left-[4px] w-[15px] -translate-x-[5px] -rotate-[135deg]':
             isOpen,
-          'top-7 w-[60%]': !isOpen,
+          'top-6 w-[60%]': !isOpen,
         })}
         style={{
           transition: 'transform 1.2s ease, -webkit-transform 1.2s ease',
