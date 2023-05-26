@@ -54,7 +54,7 @@ export const SkillList: React.FC<SkillListProps> = ({
             variant === 'gradient',
 
           // variant: "horizontal"
-          'flex flex-row flex-nowrap justify-start gap-12 overflow-x-auto [&>li]:w-1/4':
+          'flex flex-row flex-nowrap items-center justify-start gap-12 overflow-x-auto [&>li]:max-w-[150px]':
             variant === 'horizontal',
         },
         className,

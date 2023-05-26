@@ -217,8 +217,18 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
               <div
                 className={classNames('grid grid-cols-1 gap-8 md:grid-cols-2')}
               >
-                {prevWork && <WorkCard work={prevWork} />}
-                {nextWork && <WorkCard work={nextWork} />}
+                {prevWork && (
+                  <WorkCard
+                    work={prevWork}
+                    className="mx-auto min-w-[min(100%,400px)] max-w-[310px] sm:max-w-[380px] sm:flex-1 md:min-w-[47%]"
+                  />
+                )}
+                {nextWork && (
+                  <WorkCard
+                    work={nextWork}
+                    className="mx-auto min-w-[min(100%,400px)] max-w-[310px] sm:max-w-[380px] sm:flex-1 md:min-w-[47%]"
+                  />
+                )}
               </div>
             </WorkTitleContent>
           </div>
