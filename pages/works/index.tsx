@@ -1,3 +1,4 @@
+import Meta from '@/components/Meta'
 import { SectionHeading } from '@/components/elements/heading'
 import { Container } from '@/components/layouts/container/Container'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
@@ -20,6 +21,7 @@ const WorksPage: NextPage<WorksPageProps> = ({ works }) => {
       direction="to-b"
       className="relative h-full min-h-screen pt-40"
     >
+      <Meta pageTitle="Works" />
       <Container className="pb-20">
         <SectionHeading>Works</SectionHeading>
         <WorkList works={works} />

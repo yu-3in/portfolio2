@@ -22,6 +22,7 @@ import { GroupedSkill, Skill } from '@/features/skill/types'
 import { SkillGroupStack } from '@/features/skill/components/SkillGroupStack'
 import { getGroupedSkills } from '@/features/skill/libs/getGroupedSkills'
 import { useMediaQuery, useTheme } from '@mui/material'
+import Meta from '@/components/Meta'
 
 export type HomeProps = {
   works: Work[] | null
@@ -37,6 +38,7 @@ const Home: NextPage<HomeProps> = (props) => {
 
   return (
     <>
+      <Meta />
       <div
         className="bg-image-[url( absolute top-0 h-screen w-full"
         style={{

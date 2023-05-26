@@ -1,3 +1,4 @@
+import Meta from '@/components/Meta'
 import { SectionHeading } from '@/components/elements/heading'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
 import { Footer } from '@/components/layouts/footer'
@@ -19,6 +20,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ profile }) => {
       direction="to-b"
       className="relative h-full min-h-screen pt-40"
     >
+      <Meta pageTitle="Profile" />
       <Container>
         <SectionHeading>Profile</SectionHeading>
       </Container>

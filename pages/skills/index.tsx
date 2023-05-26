@@ -1,3 +1,4 @@
+import Meta from '@/components/Meta'
 import { SectionHeading } from '@/components/elements/heading'
 import { Container } from '@/components/layouts/container/Container'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
@@ -22,6 +23,7 @@ const SkillsPage: NextPage<SkillsPageProps> = ({ skills, groupedSkills }) => {
       direction="to-b"
       className="relative h-full min-h-screen pt-40"
     >
+      <Meta pageTitle="Skills" />
       <Container className="pb-20">
         <SectionHeading>Skills</SectionHeading>
         <SkillGroupStack variant="default" groupedSkills={groupedSkills} />
