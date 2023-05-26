@@ -17,7 +17,10 @@ export const HeroBox: React.FC<HeroBoxProps> = ({ profile }) => {
       }}
     >
       <div className="flex flex-col gap-2 text-center">
-        <div className="bg-gradient-to-r from-[#09CCAB] to-[#D81BDC] bg-clip-text text-[24px] font-bold text-transparent">
+        <div
+          className="bg-gradient-to-r from-[#09CCAB] to-[#D81BDC] bg-clip-text text-[24px] font-bold text-transparent"
+          style={{ clipPath: 'inset(1px)' }}
+        >
           <div>{stripHtmlTags(profile?.vision?.title ?? '')}</div>
         </div>
         <div className="text-[64px] leading-[1.1em] sm:text-[72px] md:text-[86px]">
