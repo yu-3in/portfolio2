@@ -22,7 +22,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
     <Link
       href={`/works/${work.slug}`}
       className={classNames(
-        'flex overflow-hidden rounded-2xl bg-white shadow-md',
+        'group flex overflow-hidden rounded-2xl bg-white shadow-md',
         {
           'flex-col': direction === 'column',
           'flex-row': direction === 'column',
@@ -30,7 +30,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
         className,
       )}
     >
-      <div className="relative">
+      <div className="relative overflow-hidden">
         <figure>
           <Image
             src={work.thumbnail?.url ?? ''}
@@ -39,6 +39,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
             alt={work.title}
             placeholder={work.thumbnail?.blurDataURL ? 'blur' : undefined}
             blurDataURL={work.thumbnail?.blurDataURL}
+            className="group-hover:scale-110"
             style={{
               // layout: responsive
               width: '100%',
