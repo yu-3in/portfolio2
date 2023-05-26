@@ -7,7 +7,7 @@ export const getNextWork = async (work: Work): Promise<Work | null> => {
       endpoint: 'works',
       queries: {
         limit: 1,
-        orders: 'publishedAt',
+        orders: '-publishedAt',
         filters: `publishedAt[less_than]${work.publishedAt}`,
       },
     })
