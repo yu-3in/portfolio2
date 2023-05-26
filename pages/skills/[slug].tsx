@@ -1,3 +1,4 @@
+import Meta from '@/components/Meta'
 import { ParsedHTML } from '@/components/elements/content/parseHTML'
 import { Container } from '@/components/layouts/container/Container'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
@@ -15,6 +16,8 @@ import classNames from 'classnames'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import { ParsedUrlQuery } from 'querystring'
+import { useMemo } from 'react'
+import parse from 'html-react-parser'
 
 interface IParams extends ParsedUrlQuery {
   slug: string
@@ -26,6 +29,13 @@ export type SkillPageProps = {
 }
 
 const SkillPage: React.FC<SkillPageProps> = ({ skill, works }) => {
+  const pageDesc = useMemo(() => {
+    const description = parse(skill.description ?? '')
+    // @ts-ignore
+    // NOTE: html-react-parserの返り値Elementから文字列を取得するために、強引にprops.childrenを参照している
+    return typeof description === 'object' ? description.props.children : ''
+  }, [])
+
   return (
     <GradientContainer
       fromColor="rgba(154, 158, 243, 0.31)"
@@ -33,6 +43,13 @@ const SkillPage: React.FC<SkillPageProps> = ({ skill, works }) => {
       direction="to-b"
       className="relative h-full min-h-screen pt-40"
     >
+      <Meta
+        pageTitle={skill.title}
+        pageDesc={pageDesc}
+        pageImg={skill.image?.url}
+        pageImgW={parseInt(skill.image?.width ?? '')}
+        pageImgH={parseInt(skill.image?.height ?? '')}
+      />
       <Container className="flex flex-col gap-16">
         <div className="flex flex-col items-center justify-center gap-8">
           <h1 className="text-5xl font-medium">{skill.title}</h1>
