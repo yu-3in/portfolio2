@@ -1,10 +1,18 @@
+import { ParsedHTML } from '@/components/elements/content/parseHTML'
 import { Container } from '@/components/layouts/container/Container'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
 import { getAllSkillSlugs } from '@/features/skill/apis/getAllSkillSlugs'
 import { getSkillBySlug } from '@/features/skill/apis/getSkillBySlug'
 import { addBlurDataURLToSkill } from '@/features/skill/libs/addBlurDataURLToSkill'
 import { Skill } from '@/features/skill/types'
+import { getWorksBySkill } from '@/features/work/apis/getWorksBySkill'
+import { WorkList } from '@/features/work/components'
+import { addBlurDataURLToWork } from '@/features/work/libs/addBlurDataURLToWork'
+import { Work } from '@/features/work/types/Work'
+import { Rating } from '@mui/material'
+import classNames from 'classnames'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import Image from 'next/image'
 import { ParsedUrlQuery } from 'querystring'
 
 interface IParams extends ParsedUrlQuery {
@@ -13,9 +21,10 @@ interface IParams extends ParsedUrlQuery {
 
 export type SkillPageProps = {
   skill: Skill
+  works: Work[] | null
 }
 
-const SkillPage: React.FC<SkillPageProps> = ({ skill }) => {
+const SkillPage: React.FC<SkillPageProps> = ({ skill, works }) => {
   return (
     <GradientContainer
       fromColor="rgba(154, 158, 243, 0.31)"
@@ -23,8 +32,38 @@ const SkillPage: React.FC<SkillPageProps> = ({ skill }) => {
       direction="to-b"
       className="relative h-full min-h-screen pt-40"
     >
-      <Container>
-        <div></div>
+      <Container className="flex flex-col gap-16">
+        <div className="flex flex-col items-center justify-center gap-8">
+          <h1 className="text-5xl font-medium">{skill.title}</h1>
+          <figure>
+            <Image
+              src={skill.image.url ?? ''}
+              width={parseInt(skill.image.width ?? '')}
+              height={parseInt(skill.image.height ?? '')}
+              alt={skill.title}
+              placeholder={skill.image.blurDataURL ? 'blur' : undefined}
+              blurDataURL={skill.image.blurDataURL}
+            />
+          </figure>
+          <Rating
+            value={skill.level}
+            precision={0.5}
+            readOnly
+            color="#0094FF"
+            size="large"
+            className={classNames('flex justify-center')}
+            style={{
+              flex: 1,
+            }}
+          />
+          <div className="w-3/4">
+            <ParsedHTML html={skill.content} />
+          </div>
+        </div>
+        <div className="flex flex-col gap-4">
+          <h2 className="text-3xl font-bold">このスキルを使っているWorks</h2>
+          <WorkList works={works} />
+        </div>
       </Container>
     </GradientContainer>
   )
@@ -45,8 +84,7 @@ export const getStaticPaths: GetStaticPaths<IParams> = async () => {
 export const getStaticProps: GetStaticProps<SkillPageProps, IParams> = async ({
   params,
 }) => {
-  const skill =
-    params?.slug != undefined ? await getSkillBySlug(params?.slug) : undefined
+  const skill = params?.slug != null ? await getSkillBySlug(params?.slug) : null
 
   if (skill == null) {
     return {
@@ -54,12 +92,18 @@ export const getStaticProps: GetStaticProps<SkillPageProps, IParams> = async ({
     }
   }
 
+  // skillを使用したworks
+  const works = params?.slug != null ? await getWorksBySkill(skill) : null
+
   // Add blurDataURL
   const skillAddedBlurDataURL = (await addBlurDataURLToSkill([skill]))[0]
+  const worksAddedBlurDataURL =
+    works != null ? await addBlurDataURLToWork(works) : null
 
   return {
     props: {
       skill: skillAddedBlurDataURL,
+      works: worksAddedBlurDataURL,
     },
   }
 }
