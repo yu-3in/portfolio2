@@ -1,6 +1,7 @@
 import { ParsedHTML } from '@/components/elements/content/parseHTML'
 import { Container } from '@/components/layouts/container/Container'
 import { GradientContainer } from '@/components/layouts/container/GradientContainer'
+import { Footer } from '@/components/layouts/footer'
 import { getAllSkillSlugs } from '@/features/skill/apis/getAllSkillSlugs'
 import { getSkillBySlug } from '@/features/skill/apis/getSkillBySlug'
 import { addBlurDataURLToSkill } from '@/features/skill/libs/addBlurDataURLToSkill'
@@ -65,6 +66,9 @@ const SkillPage: React.FC<SkillPageProps> = ({ skill, works }) => {
           <WorkList works={works} />
         </div>
       </Container>
+      <div className="mt-20">
+        <Footer />
+      </div>
     </GradientContainer>
   )
 }
