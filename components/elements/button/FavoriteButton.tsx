@@ -65,6 +65,8 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = ({
           })}
         >
           {favoriteCount}
+          <span className="ml-1 text-xs tracking-tighter">スキ</span>
+          <span className="ml-0.5">!</span>
         </div>
       }
     </div>
