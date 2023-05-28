@@ -57,6 +57,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
               objectFit: 'cover',
             }}
             sizes="50vw"
+            key={work.slug}
           />
         </figure>
         <div
