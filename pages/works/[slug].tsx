@@ -120,10 +120,17 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
       <Container className="mt-16 flex gap-12">
         <div style={{ flex: 9 }}>
           <div className="flex flex-col gap-12">
-            {work.content && (
+            {work.summary && (
               <div id="概要">
                 <WorkTitleContent title="概要">
-                  <ParsedHTML html={work.content} />
+                  <ParsedHTML html={work.summary} />
+                </WorkTitleContent>
+              </div>
+            )}
+            {work.issue && (
+              <div id="開発動機・目的">
+                <WorkTitleContent title="開発動機・目的">
+                  <ParsedHTML html={work.issue} />
                 </WorkTitleContent>
               </div>
             )}
@@ -134,10 +141,24 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
                 </WorkTitleContent>
               </div>
             )}
+            {work.teamStructure && (
+              <div id="チーム構成">
+                <WorkTitleContent title="チーム構成">
+                  <ParsedHTML html={work.teamStructure} />
+                </WorkTitleContent>
+              </div>
+            )}
             {work.role && (
               <div id="役割">
                 <WorkTitleContent title="役割">
                   <ParsedHTML html={work.role} />
+                </WorkTitleContent>
+              </div>
+            )}
+            {work.point && (
+              <div id="工夫したところ">
+                <WorkTitleContent title="工夫したところ">
+                  <ParsedHTML html={work.point} />
                 </WorkTitleContent>
               </div>
             )}
@@ -155,9 +176,14 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
             <WorkTitleContent title="INDEX">
               <nav>
                 <ul className="flex flex-col gap-2 [&>li]:font-bold">
-                  {work.content && (
+                  {work.summary && (
                     <li>
                       <a href="#概要">概要</a>
+                    </li>
+                  )}
+                  {work.issue && (
+                    <li>
+                      <a href="#開発動機・目的">開発動機・目的</a>
                     </li>
                   )}
                   {work.duration && (
@@ -165,9 +191,19 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
                       <a href="#期間">期間</a>
                     </li>
                   )}
+                  {work.teamStructure && (
+                    <li>
+                      <a href="#チーム構成">チーム構成</a>
+                    </li>
+                  )}
                   {work.role && (
                     <li>
                       <a href="#役割">役割</a>
+                    </li>
+                  )}
+                  {work.point && (
+                    <li>
+                      <a href="#工夫したところ">工夫したところ</a>
                     </li>
                   )}
                   {work.impressions && (

@@ -13,12 +13,15 @@ export type Work = {
   slug: string
   description: string
   url?: string
-  content?: string
+  summary?: string
+  issue?: string
+  teamStructure?: string
+  role?: string
+  point?: string
+  impressions?: string
   categories: WorkCategory[]
   tags: WorkTag[]
-  role?: string
   skills?: Skill[]
-  impressions?: string
   coverImage?: Image
   thumbnail?: Image
   startDate: string
