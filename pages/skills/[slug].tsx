@@ -64,6 +64,7 @@ const SkillPage: React.FC<SkillPageProps> = ({ skill, works }) => {
               alt={skill.title}
               placeholder={skill.image.blurDataURL ? 'blur' : undefined}
               blurDataURL={skill.image.blurDataURL}
+              key={skill.slug}
             />
           </figure>
           <Rating

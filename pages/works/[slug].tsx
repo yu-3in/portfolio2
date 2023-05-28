@@ -112,6 +112,7 @@ const WorkPage: NextPage<WorkPageProps> = ({ work, prevWork, nextWork }) => {
                 // fade in
                 transition: '0.2s',
               }}
+              key={work.slug}
             />
           </figure>
         </div>
