@@ -42,12 +42,8 @@ export const SkillList: React.FC<SkillListProps> = ({
       className={classNames(
         {
           // variant: "default"
-          'grid items-center justify-center gap-16 md:gap-20':
+          'grid grid-cols-2 items-center justify-center gap-16 sm:grid-cols-3 md:grid-cols-4 md:gap-20 lg:grid-cols-5':
             variant === 'default',
-          'grid-cols-2': variant === 'default',
-          'grid-cols-3': variant === 'default' && sm,
-          'grid-cols-5': variant === 'default' && md,
-          'grid-cols-6': variant === 'default' && lg,
 
           // variant: "gradient"
           'grid items-center justify-center gap-12 md:gap-24':

@@ -109,7 +109,7 @@ export const SkillItem: React.FC<SkillItemProps> = ({
             >
               <div
                 className={classNames(
-                  'h-14 overflow-y-hidden text-ellipsis text-sm',
+                  'h-14 overflow-y-hidden text-ellipsis text-center text-sm',
                 )}
               >
                 <ParsedHTML html={skill?.description} />
