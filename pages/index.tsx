@@ -53,7 +53,7 @@ const Home: NextPage<HomeProps> = (props) => {
         className="relative pt-16"
       >
         <Container>
-          <SectionHeading>Works</SectionHeading>
+          <SectionHeading id="works">Works</SectionHeading>
           <WorkList works={works} />
           <div className="mt-16 flex justify-center">
             <ShowMoreButton href="/works" />
@@ -70,7 +70,7 @@ const Home: NextPage<HomeProps> = (props) => {
           <ProfileVision vision={props.profile?.vision} />
         )}
         <Container>
-          <SectionHeading>Profile</SectionHeading>
+          <SectionHeading id="profile">Profile</SectionHeading>
         </Container>
         <ProfileBox profile={props.profile} />
         <Container className="mt-16">
@@ -87,7 +87,7 @@ const Home: NextPage<HomeProps> = (props) => {
         className="overflow-hidden pt-16 pb-48"
       >
         <Container>
-          <SectionHeading>Skills</SectionHeading>
+          <SectionHeading id="skills">Skills</SectionHeading>
         </Container>
         <Container size={md ? 'large' : 'medium'}>
           <SkillGroupStack
@@ -106,7 +106,7 @@ const Home: NextPage<HomeProps> = (props) => {
         className="pt-16"
       >
         <Container className="-mt-32">
-          <SectionHeading>Contact</SectionHeading>
+          <SectionHeading id="contact">Contact</SectionHeading>
           <ContactForm />
         </Container>
         <Footer />
