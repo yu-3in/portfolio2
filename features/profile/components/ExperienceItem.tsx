@@ -24,7 +24,7 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
   const theme = useTheme()
   const md = useMediaQuery(theme.breakpoints.up('md'))
   const [isAccordionEnabled, setIsAccordionEnabled] = useState<boolean>(
-    Boolean(experience.description) ||
+    Boolean(experience.content) ||
       Boolean(experience.work) ||
       Boolean(experience.url),
   )
@@ -112,11 +112,9 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
                 <div className="text-sm text-gray-500">
                   {experience.subTitle}
                 </div>
-                {isAccordionEnabled && (
-                  <div className="mt-1">
-                    <ParsedHTML html={experience.description} />
-                  </div>
-                )}
+                <div className="mt-1">
+                  <ParsedHTML html={experience.description} />
+                </div>
               </div>
               {isAccordionEnabled ? (
                 expanded ? (
