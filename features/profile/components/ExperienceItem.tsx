@@ -95,9 +95,19 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
           <AccordionSummary>
             <div className="flex w-full items-center justify-between gap-4">
               <div>
-                <time dateTime={formattedStartDate}>{formattedStartDate}</time>
-                <span className="mx-1 inline-block">~</span>
-                <time dateTime={formattedEndDate}>{formattedEndDate}</time>
+                {formattedStartDate === formattedEndDate ? (
+                  <time dateTime={formattedStartDate}>
+                    {formattedStartDate}
+                  </time>
+                ) : (
+                  <>
+                    <time dateTime={formattedStartDate}>
+                      {formattedStartDate}
+                    </time>
+                    <span className="mx-1 inline-block">~</span>
+                    <time dateTime={formattedEndDate}>{formattedEndDate}</time>
+                  </>
+                )}
                 <h3 className="text-xl font-bold">{experience.title}</h3>
                 <div className="text-sm text-gray-500">
                   {experience.subTitle}
