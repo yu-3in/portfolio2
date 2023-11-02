@@ -11,6 +11,7 @@ import { getAge } from '../libs/getAge'
 import SchoolIcon from '@mui/icons-material/School'
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline'
 import classNames from 'classnames'
+import { useMediaQuery, useTheme } from '@mui/material'
 
 export type ProfileBoxProps = {
   profile: Profile | null
@@ -21,9 +22,12 @@ export const ProfileBox: React.FC<ProfileBoxProps> = ({
   profile,
   className,
 }) => {
+  const theme = useTheme()
+  const md = useMediaQuery(theme.breakpoints.up('md'))
+
   return (
     <div className={classNames(className)}>
-      <div className="relative z-10">
+      <div className="mb:pb-0 relative z-10 pb-[40px] md:pb-0">
         <figure>
           <Image
             src={profile?.profileImage?.url ?? ''}
@@ -36,8 +40,8 @@ export const ProfileBox: React.FC<ProfileBoxProps> = ({
             blurDataURL={profile?.profileImage?.blurDataURL}
             style={{
               // layout: responsive
-              width: '250px',
-              height: '250px',
+              width: md ? '250px' : '180px',
+              height: md ? '250px' : '180px',
               // fade in
               transition: '0.2s',
               objectFit: 'cover',
@@ -47,7 +51,7 @@ export const ProfileBox: React.FC<ProfileBoxProps> = ({
           />
         </figure>
       </div>
-      <div className="relative -mt-32 overflow-hidden bg-white/50 pt-32 pb-16">
+      <div className="relative -mt-32 overflow-hidden bg-white/50 pb-16 pt-24 md:pt-32">
         {/* gradation */}
         <div className="h-full overflow-hidden">
           <div

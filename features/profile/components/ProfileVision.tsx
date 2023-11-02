@@ -42,7 +42,7 @@ export const ProfileVision: React.FC<ProfileVisionProps> = ({ vision }) => {
       </div>
       <Container>
         <div
-          className="mt-8 bg-clip-text"
+          className="mt-8 bg-clip-text px-2"
           style={{
             color: 'rgba(0, 93, 122, 1)',
           }}

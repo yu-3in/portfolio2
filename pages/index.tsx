@@ -62,11 +62,9 @@ const Home: NextPage<HomeProps> = (props) => {
             <ShowMoreButton href="/profile" />
           </div>
         </Container>
-        <Container>
-          {props.profile?.vision && (
-            <ProfileVision vision={props.profile?.vision} />
-          )}
-        </Container>
+        {props.profile?.vision && (
+          <ProfileVision vision={props.profile?.vision} />
+        )}
       </GradientContainer>
       <GradientContainer
         fromColor="rgba(172, 240, 244, 0.91)"
