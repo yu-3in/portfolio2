@@ -121,7 +121,7 @@ export const ProfileBox: React.FC<ProfileBoxProps> = ({
                 </ProfileTitleContent>
                 {profile?.jobs && (
                   <ProfileTitleContent
-                    title="希望職種"
+                    title="得意領域"
                     icon={<WorkOutlineIcon />}
                   >
                     <ul className="ml-5 list-disc">

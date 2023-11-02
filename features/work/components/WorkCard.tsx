@@ -51,7 +51,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
             style={{
               // layout: responsive
               width: '100%',
-              height: direction === 'column' ? '250px' : '320px',
+              height: direction === 'column' ? '200px' : '280px',
               // fade in
               transition: '0.2s',
               objectFit: 'cover',
@@ -81,14 +81,14 @@ export const WorkCard: React.FC<WorkCardProps> = ({
           />
         </div>
       </div>
-      <div className="grid-template-rows-[1fr_1fr_auto] grid gap-2 gap-y-4 p-5">
+      <div className="grid-template-rows-[1fr_1fr_auto] grid gap-2 gap-y-2 p-5">
         <div className="flex items-center justify-between gap-4">
-          <h3 className="text-3xl font-medium">{work.title}</h3>
+          <h3 className="text-2xl font-medium">{work.title}</h3>
           <ul className="flex list-none gap-2">
             <WorkCategoryList categories={work.categories} size="small" />
           </ul>
         </div>
-        <div>
+        <div className="text-sm">
           <ParsedHTML html={work.description} />
         </div>
         <ul className="flex list-none flex-wrap gap-2">

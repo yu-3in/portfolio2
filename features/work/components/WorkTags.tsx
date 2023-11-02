@@ -7,10 +7,7 @@ export type WorkTagsProps = {
   size?: 'small' | 'medium' | undefined
 }
 
-export const WorkTags: React.FC<WorkTagsProps> = ({
-  tags,
-  size = 'medium',
-}) => {
+export const WorkTags: React.FC<WorkTagsProps> = ({ tags, size = 'small' }) => {
   return (
     <>
       {tags.map((tag) => {

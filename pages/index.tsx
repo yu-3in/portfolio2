@@ -53,23 +53,6 @@ const Home: NextPage<HomeProps> = (props) => {
         className="relative pt-16"
       >
         <Container>
-          <SectionHeading id="works">Works</SectionHeading>
-          <WorkList works={works} />
-          <div className="mt-16 flex justify-center">
-            <ShowMoreButton href="/works" />
-          </div>
-        </Container>
-      </GradientContainer>
-      <GradientContainer
-        fromColor="rgba(172, 240, 244, 0.91)"
-        toColor="rgba(154, 158, 243, 0.31)"
-        direction="to-b"
-        className="pt-16"
-      >
-        {props.profile?.vision && (
-          <ProfileVision vision={props.profile?.vision} />
-        )}
-        <Container>
           <SectionHeading id="profile">Profile</SectionHeading>
         </Container>
         <ProfileBox profile={props.profile} />
@@ -77,6 +60,25 @@ const Home: NextPage<HomeProps> = (props) => {
           <ExperienceList experiences={props.profile?.experiences} />
           <div className="mt-12 flex justify-center">
             <ShowMoreButton href="/profile" />
+          </div>
+        </Container>
+        <Container>
+          {props.profile?.vision && (
+            <ProfileVision vision={props.profile?.vision} />
+          )}
+        </Container>
+      </GradientContainer>
+      <GradientContainer
+        fromColor="rgba(172, 240, 244, 0.91)"
+        toColor="rgba(154, 158, 243, 0.31)"
+        direction="to-b"
+        className="pt-32"
+      >
+        <Container>
+          <SectionHeading id="works">Works</SectionHeading>
+          <WorkList works={works} />
+          <div className="mt-16 flex justify-center">
+            <ShowMoreButton href="/works" />
           </div>
         </Container>
       </GradientContainer>

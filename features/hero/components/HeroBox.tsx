@@ -8,9 +8,9 @@ export type HeroBoxProps = { profile: Profile | null }
 
 export const HeroBox: React.FC<HeroBoxProps> = ({ profile }) => {
   return (
-    <div className="relative py-14 px-24">
+    <div className="relative min-w-[200px] py-14">
       <div
-        className="absolute top-0 left-0 right-0 -mx-4 h-full w-[150%] max-w-[400px] bg-gray-50/30 py-14 px-24 sm:mx-0 sm:w-full sm:max-w-full"
+        className="absolute top-0 left-1/2 right-1/2 h-full w-[150%] max-w-[500px] -translate-x-1/2 bg-gray-50/30 py-14 px-24"
         style={{
           // 歪な円形
           borderRadius: '86% 68% 100% 66% / 65% 75% 83% 80%',

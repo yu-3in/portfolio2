@@ -6,7 +6,7 @@ export type ProfileVisionProps = { vision?: Vision }
 
 export const ProfileVision: React.FC<ProfileVisionProps> = ({ vision }) => {
   return (
-    <div className="relative mb-16 md:mb-32 lg:mb-40">
+    <div className="relative">
       <div
         className="absolute top-[20%] right-[5%] h-[67%] w-[80%] max-w-[880px] bg-white/80 sm:h-[65%] sm:w-[67%] md:right-1/2 md:left-1/2 md:h-[80%] md:w-[77%] md:-translate-x-1/2 lg:h-full"
         style={{
