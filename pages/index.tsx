@@ -58,7 +58,7 @@ const Home: NextPage<HomeProps> = (props) => {
         <ProfileBox profile={props.profile} />
         <Container className="mt-16">
           <ExperienceList experiences={props.profile?.experiences} />
-          <div className="mt-12 flex justify-center">
+          <div className="my-12 flex justify-center">
             <ShowMoreButton href="/profile" />
           </div>
         </Container>
