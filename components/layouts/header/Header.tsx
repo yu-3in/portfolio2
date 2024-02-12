@@ -31,7 +31,7 @@ export const Header: React.FC<HeaderProps> = () => {
           <div className="flex items-center justify-between">
             <Link href="/">
               <span className=" bg-gradient-to-b from-black to-[rgba(0,148,255,.5)] bg-clip-text text-2xl font-semibold tracking-wider text-transparent">
-                {md && "yuuum's "}Portfolio
+                {md && "yuuumin's "}Portfolio
               </span>
             </Link>
             <HeaderNav />
