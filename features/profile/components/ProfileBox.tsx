@@ -72,11 +72,10 @@ export const ProfileBox: React.FC<ProfileBoxProps> = ({
         <Container className="mt-4 px-4">
           <div className="flex flex-col gap-5">
             <h2 className="flex flex-wrap justify-center gap-x-[.75em] text-center text-7xl md:flex-nowrap">
-              <span className="inline-block">{profile?.firstName}</span>
-              <span className="inline-block">{profile?.lastName}</span>
+              <span className="inline-block">{profile?.handleName}</span>
             </h2>
             <div>
-              <div className="mx-auto grid w-1/2 grid-cols-3 items-center justify-items-center">
+              <div className="mx-auto flex items-center justify-center gap-x-8">
                 <div>
                   <a
                     href={`https://twitter.com/${profile?.twitter}/`}
@@ -95,14 +94,6 @@ export const ProfileBox: React.FC<ProfileBoxProps> = ({
                     <GitHubIcon fontSize="large" />
                   </a>
                 </div>
-                <div>
-                  <a href={`mailto:${profile?.email}`}>
-                    <MailOutlineIcon
-                      fontSize="large"
-                      className="text-[#E94C4C]"
-                    />
-                  </a>
-                </div>
               </div>
             </div>
             <div className="my-4">
@@ -118,14 +109,14 @@ export const ProfileBox: React.FC<ProfileBoxProps> = ({
                   <span>
                     {profile?.sei} {profile?.mei}
                   </span>
-                  <span>({getAge(new Date(profile?.birthday ?? ''))})</span>
+                  {/* <span>({getAge(new Date(profile?.birthday ?? ''))})</span> */}
                 </ProfileTitleContent>
-                <ProfileTitleContent title="所属" icon={<SchoolIcon />}>
+                {/* <ProfileTitleContent title="所属" icon={<SchoolIcon />}>
                   {profile?.university} {profile?.faculty} {profile?.grade}年
-                </ProfileTitleContent>
+                </ProfileTitleContent> */}
                 {profile?.jobs && (
                   <ProfileTitleContent
-                    title="得意領域"
+                    title="技術領域"
                     icon={<WorkOutlineIcon />}
                   >
                     <ul className="ml-5 list-disc">

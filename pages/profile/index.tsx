@@ -24,7 +24,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ profile }) => {
       <Container>
         <SectionHeading>Profile</SectionHeading>
       </Container>
-      <ProfileVision vision={profile?.vision} />
+      {/* <ProfileVision vision={profile?.vision} /> */}
       <ProfileBox profile={profile} className="mt-24" />
       <Container className="mt-16">
         <ExperienceList experiences={profile?.experiences} />

@@ -39,24 +39,27 @@ const Home: NextPage<HomeProps> = (props) => {
   return (
     <>
       <Meta />
-      <div
+      {/* <div
         className="bg-image-[url( absolute top-0 h-screen w-full"
         style={{
           backgroundImage: 'url(/hero.jpg)',
         }}
       ></div>
-      <Hero profile={props.profile} />
+      <Hero profile={props.profile} /> */}
       <GradientContainer
         fromColor="rgba(190, 255, 250, 0.51)"
         toColor="rgba(172, 240, 244, 0.91)"
         direction="to-b"
-        className="relative pt-16"
+        className="relative pt-40"
       >
-        <Container>
+        {/* <Container>
           <SectionHeading id="profile">Profile</SectionHeading>
-        </Container>
+        </Container> */}
         <ProfileBox profile={props.profile} />
         <Container className="mt-16">
+          <Container>
+            <SectionHeading id="career">Career</SectionHeading>
+          </Container>
           <ExperienceList experiences={props.profile?.experiences} />
           <div className="my-12 flex justify-center">
             <ShowMoreButton href="/profile" />
@@ -84,9 +87,9 @@ const Home: NextPage<HomeProps> = (props) => {
         fromColor="rgba(154, 158, 243, 0.31)"
         toColor="rgba(244, 172, 215, 0.91)"
         direction="to-b"
-        className="overflow-hidden pt-16 pb-48"
+        className="overflow-hidden pt-44"
       >
-        <Container>
+        {/* <Container>
           <SectionHeading id="skills">Skills</SectionHeading>
         </Container>
         <Container size={md ? 'large' : 'medium'}>
@@ -97,9 +100,14 @@ const Home: NextPage<HomeProps> = (props) => {
           <div className="mt-36 flex justify-center md:mt-12">
             <ShowMoreButton href="/skills" />
           </div>
+        </Container> */}
+        <Container className="-mt-32">
+          <SectionHeading id="contact">Contact</SectionHeading>
+          <ContactForm />
         </Container>
+        <Footer />
       </GradientContainer>
-      <GradientContainer
+      {/* <GradientContainer
         fromColor="rgba(244, 172, 215, 0.91)"
         toColor="rgba(246, 249, 117, 0.78)"
         direction="to-b"
@@ -110,7 +118,7 @@ const Home: NextPage<HomeProps> = (props) => {
           <ContactForm />
         </Container>
         <Footer />
-      </GradientContainer>
+      </GradientContainer> */}
     </>
   )
 }

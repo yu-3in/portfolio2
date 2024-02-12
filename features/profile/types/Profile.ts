@@ -11,6 +11,7 @@ export type Profile = {
   revisedAt: string
   firstName: string
   lastName: string
+  handleName: string
   mei: string
   sei: string
   email: string
