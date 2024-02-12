@@ -11,8 +11,8 @@ export const HEADER_NAV: { title: string; link: string }[] = [
     title: 'Works',
     link: '/works',
   },
-  {
-    title: 'Skills',
-    link: '/skills',
-  },
+  // {
+  //   title: 'Skills',
+  //   link: '/skills',
+  // },
 ]
