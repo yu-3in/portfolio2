@@ -12,6 +12,7 @@ import SchoolIcon from '@mui/icons-material/School'
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline'
 import classNames from 'classnames'
 import { useMediaQuery, useTheme } from '@mui/material'
+import { XIcon } from '@/components/elements/icon/XIcon'
 
 export type ProfileBoxProps = {
   profile: Profile | null
@@ -75,14 +76,14 @@ export const ProfileBox: React.FC<ProfileBoxProps> = ({
               <span className="inline-block">{profile?.handleName}</span>
             </h2>
             <div>
-              <div className="mx-auto flex items-center justify-center gap-x-8">
+              <div className="mx-auto flex items-center justify-center gap-x-12">
                 <div>
                   <a
                     href={`https://twitter.com/${profile?.twitter}/`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <TwitterIcon fontSize="large" className="text-[#1DA1F2]" />
+                    <XIcon />
                   </a>
                 </div>
                 <div>
