@@ -6,21 +6,21 @@ export type ParsedHTMLProps = { html?: string }
 export const replace = (domNode: DOMNode) => {
   if (domNode instanceof Element && domNode.attribs) {
     switch (domNode.name) {
-      case 'img':
-        const { src, alt, width, height } = domNode.attribs
-        return (
-          <Image
-            src={src}
-            height={parseInt(height)}
-            width={parseInt(width)}
-            alt={alt}
-            style={{
-              width: '100%',
-              height: 'auto',
-            }}
-            sizes="(min-width: 768px) 768px, 100vw"
-          />
-        )
+      // case 'img':
+      //   const { src, alt, width, height } = domNode.attribs
+      //   return (
+      //     <Image
+      //       src={src}
+      //       height={parseInt(height)}
+      //       width={parseInt(width)}
+      //       alt={alt}
+      //       style={{
+      //         width: '100%',
+      //         height: 'auto',
+      //       }}
+      //       sizes="(min-width: 768px) 768px, 100vw"
+      //     />
+      //   )
       case 'a':
         return (
           <a
